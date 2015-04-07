@@ -7,49 +7,29 @@
 //
 
 #include <stdio.h>
+#include "Model_data.h"
 
-static const double cDefSizeWidht = 204.5;
-static const double cDefSizeHeight = 44.5;
-
-static const double cDefSizeProng = 4.5; // зубец
-static const double cDefSizeGroove = 5.5; // паз
-
-
-
-void writeResultsToFile()
+void test_t()
 {
-    FILE *f = fopen("/Users/alextsiganov/Documents/testtet.rtf", "w");
-    if (f == NULL)
-    {
-        printf("Error opening file!\n");
+    FILE *f = fopen("/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/model_graph.data", "w");
+    if (!f)
         return;
-    }
-    if (fprintf(f, "Some text: \n"))
+    for (int i=0; i<10; i++)
     {
-        printf("success\n");
+        fprintf(f, "%d\t%f\n", i, (i*i*2.35));
     }
-     fclose(f);
-    return;
-    
-    
-    /* print some text */
-    const char *text = "Write this to the file";
-    fprintf(f, "Some text: %s\n", text);
-    
-    /* print integers and floats */
-    int i = 4;
-    float py = 3.1415927;
-    fprintf(f, "Integer: %d, float: %f\n", i, py);
-    
-    /* printing single chatacters */
-    char c = 'A';
-    fprintf(f, "A character: %c\n", c);
-    
     fclose(f);
+}
+
+void create_model_data()
+{
+    Model_inductor_data_s *inductor = newModelInductor();
 }
 
 int main(int argc, const char * argv[])
 {
-    writeResultsToFile();
+    create_model_data();
+    //writeResultsToFile();
+    test_t();
     return 0;
 }

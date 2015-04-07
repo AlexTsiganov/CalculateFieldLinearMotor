@@ -1,8 +1,5 @@
-\documentclass[10pt]{article}
-\usepackage[usenames]{color} %used for font color
-\usepackage{amssymb} %maths
-\usepackage{amsmath} %maths
-\usepackage[utf8]{inputenc} %useful to type directly diacritic characters
-\begin{document}
-\begin{align*}\end{align*}
+\documentclass{article}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.9}\begin{document}
+\[\begin{tikzpicture} \begin{axis}[ title=Inv. cum. normal, xlabel={$x$}, ylabel={$y$}, ] \addplot[blue] table {/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/model_graph.data}; \end{axis} \end{tikzpicture}\]
 \end{document}

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8406FE7E1AB85C2600D1D872 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 8406FE7D1AB85C2600D1D872 /* main.c */; };
 		CE435D821AC41B560082B8E8 /* Data_s.c in Sources */ = {isa = PBXBuildFile; fileRef = CE435D801AC41B560082B8E8 /* Data_s.c */; };
+		CE435D891AD39D5C0082B8E8 /* Model_data.c in Sources */ = {isa = PBXBuildFile; fileRef = CE435D871AD39D5C0082B8E8 /* Model_data.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +30,10 @@
 		CE435D801AC41B560082B8E8 /* Data_s.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Data_s.c; sourceTree = "<group>"; };
 		CE435D811AC41B560082B8E8 /* Data_s.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data_s.h; sourceTree = "<group>"; };
 		CE435D861AD39AE50082B8E8 /* DrawModel.tex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DrawModel.tex; sourceTree = "<group>"; };
+		CE435D871AD39D5C0082B8E8 /* Model_data.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Model_data.c; sourceTree = "<group>"; };
+		CE435D881AD39D5C0082B8E8 /* Model_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model_data.h; sourceTree = "<group>"; };
+		CE435D8C1AD3A2380082B8E8 /* model_graph.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = model_graph.data; sourceTree = "<group>"; };
+		CE435D8E1AD3A92E0082B8E8 /* pdf_data_model.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = pdf_data_model.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +50,8 @@
 		8406FE711AB85C2600D1D872 = {
 			isa = PBXGroup;
 			children = (
+				CE435D8D1AD3A92E0082B8E8 /* Scripts */,
+				CE435D8B1AD3A2380082B8E8 /* Data files */,
 				CE435D851AD39AE50082B8E8 /* Latex */,
 				8406FE7C1AB85C2600D1D872 /* Diplom */,
 				8406FE7B1AB85C2600D1D872 /* Products */,
@@ -79,8 +86,10 @@
 		CE435D7F1AC41B2F0082B8E8 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				CE435D801AC41B560082B8E8 /* Data_s.c */,
+				CE435D881AD39D5C0082B8E8 /* Model_data.h */,
+				CE435D871AD39D5C0082B8E8 /* Model_data.c */,
 				CE435D811AC41B560082B8E8 /* Data_s.h */,
+				CE435D801AC41B560082B8E8 /* Data_s.c */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -91,6 +100,22 @@
 				CE435D861AD39AE50082B8E8 /* DrawModel.tex */,
 			);
 			path = Latex;
+			sourceTree = "<group>";
+		};
+		CE435D8B1AD3A2380082B8E8 /* Data files */ = {
+			isa = PBXGroup;
+			children = (
+				CE435D8C1AD3A2380082B8E8 /* model_graph.data */,
+			);
+			path = "Data files";
+			sourceTree = "<group>";
+		};
+		CE435D8D1AD3A92E0082B8E8 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				CE435D8E1AD3A92E0082B8E8 /* pdf_data_model.sh */,
+			);
+			path = Scripts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,6 +176,7 @@
 			files = (
 				8406FE7E1AB85C2600D1D872 /* main.c in Sources */,
 				CE435D821AC41B560082B8E8 /* Data_s.c in Sources */,
+				CE435D891AD39D5C0082B8E8 /* Model_data.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

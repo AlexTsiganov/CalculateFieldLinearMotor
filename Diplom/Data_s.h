@@ -14,13 +14,20 @@ typedef struct
 typedef struct
 {
     double value;
-    Point_s *point, *tan_v, *normal_v;
+    Point_s *point, *tan_vector, *normal_vector;
 }Point_value_s;
 
 typedef struct
 {
-    Point_value_s *list;
+    Point_value_s **points;
     int count;
-}List_Points;
+}List_Points_s;
 
-List_Points* newList_Pints(int count);
+Point_s* newPoint(double x, double y);
+
+#define newPointValue(...) newPointValue_base((Point_value_s){__VA_ARGS__})
+Point_value_s* newPointValue_base(Point_value_s inPointValue);
+
+List_Points_s* newListPoints();
+void addListPoints(List_Points_s *list, Point_value_s *pointValue);
+void freeListPoints(List_Points_s *list);
