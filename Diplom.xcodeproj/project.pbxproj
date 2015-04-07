@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8406FE7E1AB85C2600D1D872 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 8406FE7D1AB85C2600D1D872 /* main.c */; };
+		CE435D821AC41B560082B8E8 /* Data_s.c in Sources */ = {isa = PBXBuildFile; fileRef = CE435D801AC41B560082B8E8 /* Data_s.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,9 @@
 /* Begin PBXFileReference section */
 		8406FE7A1AB85C2600D1D872 /* Diplom */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Diplom; sourceTree = BUILT_PRODUCTS_DIR; };
 		8406FE7D1AB85C2600D1D872 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		CE435D801AC41B560082B8E8 /* Data_s.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Data_s.c; sourceTree = "<group>"; };
+		CE435D811AC41B560082B8E8 /* Data_s.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data_s.h; sourceTree = "<group>"; };
+		CE435D861AD39AE50082B8E8 /* DrawModel.tex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DrawModel.tex; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +45,7 @@
 		8406FE711AB85C2600D1D872 = {
 			isa = PBXGroup;
 			children = (
+				CE435D851AD39AE50082B8E8 /* Latex */,
 				8406FE7C1AB85C2600D1D872 /* Diplom */,
 				8406FE7B1AB85C2600D1D872 /* Products */,
 			);
@@ -57,9 +62,35 @@
 		8406FE7C1AB85C2600D1D872 /* Diplom */ = {
 			isa = PBXGroup;
 			children = (
-				8406FE7D1AB85C2600D1D872 /* main.c */,
+				CE435D7E1AC41B240082B8E8 /* Code */,
 			);
 			path = Diplom;
+			sourceTree = "<group>";
+		};
+		CE435D7E1AC41B240082B8E8 /* Code */ = {
+			isa = PBXGroup;
+			children = (
+				CE435D7F1AC41B2F0082B8E8 /* Data */,
+				8406FE7D1AB85C2600D1D872 /* main.c */,
+			);
+			name = Code;
+			sourceTree = "<group>";
+		};
+		CE435D7F1AC41B2F0082B8E8 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				CE435D801AC41B560082B8E8 /* Data_s.c */,
+				CE435D811AC41B560082B8E8 /* Data_s.h */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		CE435D851AD39AE50082B8E8 /* Latex */ = {
+			isa = PBXGroup;
+			children = (
+				CE435D861AD39AE50082B8E8 /* DrawModel.tex */,
+			);
+			path = Latex;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8406FE7E1AB85C2600D1D872 /* main.c in Sources */,
+				CE435D821AC41B560082B8E8 /* Data_s.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +235,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
 			};
 			name = Debug;
 		};
@@ -210,6 +243,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
 			};
 			name = Release;
 		};
@@ -232,6 +266,7 @@
 				8406FE831AB85C2600D1D872 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
