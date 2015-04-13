@@ -7,27 +7,31 @@
 //
 
 #include "Data_s.h"
-
-static const double cDefault_data_inductor_size_widht = 204.5;
-static const double cDefault_data_inductor_size_height = 44.5;
-
-static const double cDefault_data_inducor_prong_width = 4.5; // зубец
-static const double cDefault_data_inducor_prong_height = 4.5; // зубец
-static const double cDefault_data_inducor_groove_width = 5.5; // паз
+#include "Array_s.h"
+#include "Default_model_params.h"
 
 typedef struct
 {
-    double width, height, prong_width, groove_width, groove_height;
+    double width, height;
+}Size_s;
+
+typedef struct
+{
+    int dWidth_count, dHeight_count, prong_dWidth_count, prong_dHeight_number, Groove_dWidth_count;
+}Inductor_razbieni_count_s;
+
+typedef struct
+{
+    Size_s *inducton_size, prong_size, groove_size;
     int groove_count, prong_count;
-    int dWidth_number, dHeight_number, dProng_width_number, dProng_height_number, dGroove_width_number;
-}Model_inductor_data_params_s;
+    Inductor_razbieni_count_s *n_razbieni;
+}Inductor_model_data_params_s;
 
 typedef struct Model_inductor_data_s
 {
-    Model_inductor_data_params_s *params;
+    Inductor_model_data_params_s *params;
     List_Points_s *points;
-    List_Points_s* (*getAllPoints)(struct Model_inductor_data_s *inductor);
-}Model_inductor_data_s;
+}Inductor_model_data_s;
 
 
 #define newModelInductor(...) newModelInductorData_base((Model_inductor_data_params_s)\
@@ -37,7 +41,8 @@ typedef struct Model_inductor_data_s
     .prong_width = -1, \
     .groove_width = -1, \
     .groove_height = -1, \
-    __VA_ARGS__})
+    __VA_ARGS__\
+})
 
-Model_inductor_data_s* newModelInductorData_base(Model_inductor_data_params_s model_params);
+Inductor_model_data_s* newModelInductorData_base(Inductor_model_data_params_s model_params);
 

@@ -19,7 +19,7 @@ typedef struct
 
 typedef struct
 {
-    Point_value_s **points;
+    Point_value_s *points;
     int count;
 }List_Points_s;
 

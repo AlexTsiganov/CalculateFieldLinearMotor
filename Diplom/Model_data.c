@@ -28,7 +28,7 @@ int validateModelInductorDataParams(Model_inductor_data_params_s *model_params)
     model_params->dGroove_width_number = 10;
     model_params->dHeight_number = 10;
     model_params->dProng_height_number = 10;
-    model_params->dProng_width_number = 10000000;
+    model_params->dProng_width_number = 1000000000;
     model_params->dWidth_number = 10;
     return result;
 }
@@ -49,7 +49,6 @@ Model_inductor_data_s* newModelInductorData_base(Model_inductor_data_params_s mo
     }
     
     newModelInductorData->params = &model_params;
-    newModelInductorData->getAllPoints = list;
     return newModelInductorData;
 }
 

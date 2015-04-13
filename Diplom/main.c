@@ -23,7 +23,7 @@ void test_t()
 
 void create_model_data()
 {
-    Model_inductor_data_s *inductor = newModelInductor();
+    Inductor_model_data_s *inductor = newModelInductor(.width = 10);
 }
 
 int main(int argc, const char * argv[])

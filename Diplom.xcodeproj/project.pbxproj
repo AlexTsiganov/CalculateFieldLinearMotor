@@ -10,6 +10,7 @@
 		8406FE7E1AB85C2600D1D872 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 8406FE7D1AB85C2600D1D872 /* main.c */; };
 		CE435D821AC41B560082B8E8 /* Data_s.c in Sources */ = {isa = PBXBuildFile; fileRef = CE435D801AC41B560082B8E8 /* Data_s.c */; };
 		CE435D891AD39D5C0082B8E8 /* Model_data.c in Sources */ = {isa = PBXBuildFile; fileRef = CE435D871AD39D5C0082B8E8 /* Model_data.c */; };
+		CEE2BE171ADC4D7F0036B93A /* Array_s.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BE151ADC4D7F0036B93A /* Array_s.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +35,9 @@
 		CE435D881AD39D5C0082B8E8 /* Model_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model_data.h; sourceTree = "<group>"; };
 		CE435D8C1AD3A2380082B8E8 /* model_graph.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = model_graph.data; sourceTree = "<group>"; };
 		CE435D8E1AD3A92E0082B8E8 /* pdf_data_model.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = pdf_data_model.sh; sourceTree = "<group>"; };
+		CEE2BE151ADC4D7F0036B93A /* Array_s.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Array_s.c; sourceTree = "<group>"; };
+		CEE2BE161ADC4D7F0036B93A /* Array_s.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Array_s.h; sourceTree = "<group>"; };
+		CEE2BE181ADC51590036B93A /* Default_model_params.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Default_model_params.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,7 @@
 		CE435D7E1AC41B240082B8E8 /* Code */ = {
 			isa = PBXGroup;
 			children = (
+				CEE2BE141ADC4D690036B93A /* Libs */,
 				CE435D7F1AC41B2F0082B8E8 /* Data */,
 				8406FE7D1AB85C2600D1D872 /* main.c */,
 			);
@@ -86,6 +91,7 @@
 		CE435D7F1AC41B2F0082B8E8 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				CEE2BE181ADC51590036B93A /* Default_model_params.h */,
 				CE435D881AD39D5C0082B8E8 /* Model_data.h */,
 				CE435D871AD39D5C0082B8E8 /* Model_data.c */,
 				CE435D811AC41B560082B8E8 /* Data_s.h */,
@@ -116,6 +122,15 @@
 				CE435D8E1AD3A92E0082B8E8 /* pdf_data_model.sh */,
 			);
 			path = Scripts;
+			sourceTree = "<group>";
+		};
+		CEE2BE141ADC4D690036B93A /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				CEE2BE161ADC4D7F0036B93A /* Array_s.h */,
+				CEE2BE151ADC4D7F0036B93A /* Array_s.c */,
+			);
+			name = Libs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +192,7 @@
 				8406FE7E1AB85C2600D1D872 /* main.c in Sources */,
 				CE435D821AC41B560082B8E8 /* Data_s.c in Sources */,
 				CE435D891AD39D5C0082B8E8 /* Model_data.c in Sources */,
+				CEE2BE171ADC4D7F0036B93A /* Array_s.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +276,13 @@
 		8406FE821AB85C2600D1D872 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_C_LANGUAGE_STANDARD = c11;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"/usr/local/lib/glib-2.0/**",
+					"/usr/local/lib/glib-2.0/include/**",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
 			};
@@ -268,6 +291,7 @@
 		8406FE831AB85C2600D1D872 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_C_LANGUAGE_STANDARD = c11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
 			};
