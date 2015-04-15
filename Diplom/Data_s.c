@@ -17,6 +17,11 @@ Point_s* newPoint(double x, double y)
     return point;
 }
 
+void freePoint(Point_s *point)
+{
+    free(point);
+}
+
 Point_value_s* newPointValue_base(Point_value_s inPointValue)
 {
     Point_value_s *pointValue = malloc(sizeof(Point_value_s));
@@ -34,7 +39,7 @@ List_Points_s* newListPoints()
     return list;
 }
 
-void addListPoints(List_Points_s *list, Point_value_s *pointValue)
+void addListPoints(List_Points_s *list, Point_value_s pointValue)
 {
     list->count++;
     list->points = realloc(list->points, sizeof(Point_value_s*)*list->count);
@@ -43,6 +48,5 @@ void addListPoints(List_Points_s *list, Point_value_s *pointValue)
 
 void freeListPoints(List_Points_s *list)
 {
-    for (int i=0; i<list->count; i++)
-        free(list->points[i]);
+#warning TODO:
 }

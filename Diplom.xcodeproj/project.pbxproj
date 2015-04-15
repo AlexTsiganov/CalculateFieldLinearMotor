@@ -33,11 +33,12 @@
 		CE435D861AD39AE50082B8E8 /* DrawModel.tex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DrawModel.tex; sourceTree = "<group>"; };
 		CE435D871AD39D5C0082B8E8 /* Model_data.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Model_data.c; sourceTree = "<group>"; };
 		CE435D881AD39D5C0082B8E8 /* Model_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model_data.h; sourceTree = "<group>"; };
-		CE435D8C1AD3A2380082B8E8 /* model_graph.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = model_graph.data; sourceTree = "<group>"; };
+		CE435D8C1AD3A2380082B8E8 /* inductor_model.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = inductor_model.data; sourceTree = "<group>"; };
 		CE435D8E1AD3A92E0082B8E8 /* pdf_data_model.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = pdf_data_model.sh; sourceTree = "<group>"; };
 		CEE2BE151ADC4D7F0036B93A /* Array_s.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Array_s.c; sourceTree = "<group>"; };
 		CEE2BE161ADC4D7F0036B93A /* Array_s.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Array_s.h; sourceTree = "<group>"; };
 		CEE2BE181ADC51590036B93A /* Default_model_params.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Default_model_params.h; sourceTree = "<group>"; };
+		CEE2BE191ADD1B3D0036B93A /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +85,7 @@
 				CEE2BE141ADC4D690036B93A /* Libs */,
 				CE435D7F1AC41B2F0082B8E8 /* Data */,
 				8406FE7D1AB85C2600D1D872 /* main.c */,
+				CEE2BE191ADD1B3D0036B93A /* Config.h */,
 			);
 			name = Code;
 			sourceTree = "<group>";
@@ -111,7 +113,7 @@
 		CE435D8B1AD3A2380082B8E8 /* Data files */ = {
 			isa = PBXGroup;
 			children = (
-				CE435D8C1AD3A2380082B8E8 /* model_graph.data */,
+				CE435D8C1AD3A2380082B8E8 /* inductor_model.data */,
 			);
 			path = "Data files";
 			sourceTree = "<group>";
@@ -284,7 +286,7 @@
 					"/usr/local/lib/glib-2.0/include/**",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 			};
 			name = Debug;
 		};
@@ -293,7 +295,7 @@
 			buildSettings = {
 				GCC_C_LANGUAGE_STANDARD = c11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 			};
 			name = Release;
 		};

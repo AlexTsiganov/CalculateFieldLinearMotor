@@ -13,7 +13,7 @@ static const double cDefault_data_inductor_size_widht = 204.5;
 static const double cDefault_data_inductor_size_height = 44.5;
 
 static const double cDefault_data_inducor_prong_width = 4.5; // зубец
-static const double cDefault_data_inducor_prong_height = 4.5; // зубец
 static const double cDefault_data_inducor_groove_width = 5.5; // паз
+static const double cDefault_data_inducor_groove_height = 37.5; // паз
 
 #endif

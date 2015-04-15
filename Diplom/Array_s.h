@@ -22,11 +22,13 @@ typedef struct
     int length;
     int capacity;
     Array_Item_t *items;
+    void (*on_item_clear)(Array_Item_t *array_item);
 } Array_s;
 
-Array_s* array_init();
+Array_s* array_new();
 void array_add(Array_s *array, Array_Item_t item);
-Array_Item_t* list_get(Array_s *list, int index);
+Array_Item_t* array_get(Array_s *array);
+Array_Item_t* array_get_by_index(Array_s *array, int index);
 void array_clear(Array_s *list);
 
 #endif
