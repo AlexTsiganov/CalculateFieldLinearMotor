@@ -1,1 +1,1 @@
-tex -shell-escape myfile.tex
+tex -shell-escape /Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Latex/DrawModel.tex

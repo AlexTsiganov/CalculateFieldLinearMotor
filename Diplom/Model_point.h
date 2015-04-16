@@ -22,11 +22,11 @@ typedef struct
     Point_s *point, *tan_vector, *normal_vector;
 }Model_point_s;
 
-Point_s* newPoint(double x, double y);
+#define newPoint(...) newPoint_base((Point_s){__VA_ARGS__})
+Point_s* newPoint_base(Point_s point_args);
 void freePoint(Point_s *point);
 
-#define newModelPoint(...) newModelPoint_base((Point_value_s){__VA_ARGS__})
+#define newModelPoint(...) newModelPoint_base((Model_point_s){__VA_ARGS__})
 Model_point_s* newModelPoint_base(Model_point_s modelPointArgs);
-
 
 #endif

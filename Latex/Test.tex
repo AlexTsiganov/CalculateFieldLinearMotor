@@ -1,0 +1,22 @@
+\documentclass[10pt]{article}
+\usepackage[usenames]{color} %used for font color
+\usepackage{pgfplots}
+\usepackage{comment}
+\usepackage{pgffor}
+\usepackage[paperheight=1000mm,paperwidth=1000mm]{geometry}
+
+
+
+\begin{tikzpicture}
+\begin{axis}[ title=Inductor Model, xlabel={$width$}, ylabel={$height$},  xticklabel style={/pgf/number format/1000 sep=},
+y=0.1cm/1,x=0.115cm,
+]
+
+\addplot[
+mark size=0.3pt,
+only marks,
+red
+] table {/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/inductor_model.data};
+
+\end{axis}
+\end{tikzpicture}

@@ -9,11 +9,11 @@
 #include "Model_point.h"
 #include <stdlib.h>
 
-Point_s* newPoint(double x, double y)
+Point_s* newPoint_base(Point_s point_args)
 {
     Point_s *point = malloc(sizeof(Point_s));
-    point->x = x;
-    point->y = y;
+    //*point = (Point_s){.x=point_args.x, .y=point_args.y};
+    *point = point_args;
     return point;
 }
 

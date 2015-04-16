@@ -7,8 +7,6 @@
 //
 
 #include "Model_data.h"
-#include <stdlib.h>
-#include <math.h>
 
 
 

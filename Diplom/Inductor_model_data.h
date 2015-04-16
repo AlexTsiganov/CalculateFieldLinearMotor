@@ -24,7 +24,7 @@ typedef struct
 typedef struct Model_inductor_data_s
 {
     Inductor_model_data_params_s *params;
-    Array_s *points;
+    Array_s *array_model_points;
 }Inductor_model_data_s;
 
 

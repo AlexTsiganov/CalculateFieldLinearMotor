@@ -6,9 +6,5 @@
 //  Copyright (c) 2015 Alex Tsiganov. All rights reserved.
 //
 
-#include "Data_s.h"
-#include "Array_s.h"
-#include "Default_model_params.h"
-
 
 
