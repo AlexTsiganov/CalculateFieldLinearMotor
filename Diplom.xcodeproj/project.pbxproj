@@ -43,6 +43,7 @@
 		CE435D8E1AD3A92E0082B8E8 /* pdf_data_model.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = pdf_data_model.sh; sourceTree = "<group>"; };
 		CEE071681AE64C5C00BAEE04 /* Faza_B.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Faza_B.data; sourceTree = "<group>"; };
 		CEE071691AE64C5C00BAEE04 /* Faza_C.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Faza_C.data; sourceTree = "<group>"; };
+		CEE0716E1AE655D200BAEE04 /* Inductor_model.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Inductor_model.pdf; sourceTree = "<group>"; };
 		CEE2BE151ADC4D7F0036B93A /* Array_s.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Array_s.c; sourceTree = "<group>"; };
 		CEE2BE161ADC4D7F0036B93A /* Array_s.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Array_s.h; sourceTree = "<group>"; };
 		CEE2BE181ADC51590036B93A /* Default_model_params.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Default_model_params.h; sourceTree = "<group>"; };
@@ -80,6 +81,7 @@
 		8406FE711AB85C2600D1D872 = {
 			isa = PBXGroup;
 			children = (
+				CEE0716D1AE655D200BAEE04 /* Pdf */,
 				CE435D8D1AD3A92E0082B8E8 /* Scripts */,
 				CE435D8B1AD3A2380082B8E8 /* Data files */,
 				CE435D851AD39AE50082B8E8 /* Latex */,
@@ -162,6 +164,14 @@
 				CEE2BE301ADFE6540036B93A /* Script.sh */,
 			);
 			path = Scripts;
+			sourceTree = "<group>";
+		};
+		CEE0716D1AE655D200BAEE04 /* Pdf */ = {
+			isa = PBXGroup;
+			children = (
+				CEE0716E1AE655D200BAEE04 /* Inductor_model.pdf */,
+			);
+			path = Pdf;
 			sourceTree = "<group>";
 		};
 		CEE2BE141ADC4D690036B93A /* Libs */ = {
