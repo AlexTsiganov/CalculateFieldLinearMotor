@@ -15,6 +15,8 @@
 		CEE2BE1F1ADE627C0036B93A /* Inductor_model_data.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BE1D1ADE627C0036B93A /* Inductor_model_data.c */; };
 		CEE2BE221ADE64ED0036B93A /* Model_point.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BE201ADE64ED0036B93A /* Model_point.c */; };
 		CEE2BE261ADE72A30036B93A /* Calculate_base.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BE241ADE72A30036B93A /* Calculate_base.c */; };
+		CEE2BE2A1ADFA5750036B93A /* Intergals.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BE281ADFA5750036B93A /* Intergals.c */; };
+		CEE2BE2D1ADFA5E90036B93A /* Calculate_B0.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BE2B1ADFA5E90036B93A /* Calculate_B0.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,6 +41,8 @@
 		CE435D881AD39D5C0082B8E8 /* Model_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model_data.h; sourceTree = "<group>"; };
 		CE435D8C1AD3A2380082B8E8 /* inductor_model.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = inductor_model.data; sourceTree = "<group>"; };
 		CE435D8E1AD3A92E0082B8E8 /* pdf_data_model.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = pdf_data_model.sh; sourceTree = "<group>"; };
+		CEE071681AE64C5C00BAEE04 /* Faza_B.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Faza_B.data; sourceTree = "<group>"; };
+		CEE071691AE64C5C00BAEE04 /* Faza_C.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Faza_C.data; sourceTree = "<group>"; };
 		CEE2BE151ADC4D7F0036B93A /* Array_s.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Array_s.c; sourceTree = "<group>"; };
 		CEE2BE161ADC4D7F0036B93A /* Array_s.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Array_s.h; sourceTree = "<group>"; };
 		CEE2BE181ADC51590036B93A /* Default_model_params.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Default_model_params.h; sourceTree = "<group>"; };
@@ -52,6 +56,14 @@
 		CEE2BE241ADE72A30036B93A /* Calculate_base.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Calculate_base.c; sourceTree = "<group>"; };
 		CEE2BE251ADE72A30036B93A /* Calculate_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calculate_base.h; sourceTree = "<group>"; };
 		CEE2BE271ADF9C8F0036B93A /* Test.tex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Test.tex; sourceTree = "<group>"; };
+		CEE2BE281ADFA5750036B93A /* Intergals.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Intergals.c; sourceTree = "<group>"; };
+		CEE2BE291ADFA5750036B93A /* Intergals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Intergals.h; sourceTree = "<group>"; };
+		CEE2BE2B1ADFA5E90036B93A /* Calculate_B0.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Calculate_B0.c; sourceTree = "<group>"; };
+		CEE2BE2C1ADFA5E90036B93A /* Calculate_B0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calculate_B0.h; sourceTree = "<group>"; };
+		CEE2BE2E1ADFA69A0036B93A /* Main_calculate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Main_calculate.h; sourceTree = "<group>"; };
+		CEE2BE2F1ADFB1010036B93A /* Faza_A.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Faza_A.data; sourceTree = "<group>"; };
+		CEE2BE301ADFE6540036B93A /* Script.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = Script.sh; sourceTree = "<group>"; };
+		CEF32F0D1AE566F400A80155 /* 1.tex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 1.tex; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,9 +110,9 @@
 				CEE2BE231ADE72890036B93A /* Calculate */,
 				CEE2BE141ADC4D690036B93A /* Libs */,
 				CE435D7F1AC41B2F0082B8E8 /* Data */,
-				CEE2BE191ADD1B3D0036B93A /* Config.h */,
-				CEE2BE1A1ADE620F0036B93A /* Graph_builder.c */,
 				CEE2BE1B1ADE620F0036B93A /* Graph_builder.h */,
+				CEE2BE1A1ADE620F0036B93A /* Graph_builder.c */,
+				CEE2BE191ADD1B3D0036B93A /* Config.h */,
 				8406FE7D1AB85C2600D1D872 /* main.c */,
 			);
 			name = Code;
@@ -125,6 +137,7 @@
 		CE435D851AD39AE50082B8E8 /* Latex */ = {
 			isa = PBXGroup;
 			children = (
+				CEF32F0D1AE566F400A80155 /* 1.tex */,
 				CE435D861AD39AE50082B8E8 /* DrawModel.tex */,
 				CEE2BE271ADF9C8F0036B93A /* Test.tex */,
 			);
@@ -134,6 +147,9 @@
 		CE435D8B1AD3A2380082B8E8 /* Data files */ = {
 			isa = PBXGroup;
 			children = (
+				CEE071681AE64C5C00BAEE04 /* Faza_B.data */,
+				CEE071691AE64C5C00BAEE04 /* Faza_C.data */,
+				CEE2BE2F1ADFB1010036B93A /* Faza_A.data */,
 				CE435D8C1AD3A2380082B8E8 /* inductor_model.data */,
 			);
 			path = "Data files";
@@ -143,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				CE435D8E1AD3A92E0082B8E8 /* pdf_data_model.sh */,
+				CEE2BE301ADFE6540036B93A /* Script.sh */,
 			);
 			path = Scripts;
 			sourceTree = "<group>";
@@ -159,8 +176,13 @@
 		CEE2BE231ADE72890036B93A /* Calculate */ = {
 			isa = PBXGroup;
 			children = (
+				CEE2BE2E1ADFA69A0036B93A /* Main_calculate.h */,
 				CEE2BE251ADE72A30036B93A /* Calculate_base.h */,
 				CEE2BE241ADE72A30036B93A /* Calculate_base.c */,
+				CEE2BE291ADFA5750036B93A /* Intergals.h */,
+				CEE2BE281ADFA5750036B93A /* Intergals.c */,
+				CEE2BE2B1ADFA5E90036B93A /* Calculate_B0.c */,
+				CEE2BE2C1ADFA5E90036B93A /* Calculate_B0.h */,
 			);
 			name = Calculate;
 			sourceTree = "<group>";
@@ -221,6 +243,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEE2BE2A1ADFA5750036B93A /* Intergals.c in Sources */,
 				8406FE7E1AB85C2600D1D872 /* main.c in Sources */,
 				CEE2BE261ADE72A30036B93A /* Calculate_base.c in Sources */,
 				CEE2BE1F1ADE627C0036B93A /* Inductor_model_data.c in Sources */,
@@ -228,6 +251,7 @@
 				CEE2BE221ADE64ED0036B93A /* Model_point.c in Sources */,
 				CE435D891AD39D5C0082B8E8 /* Model_data.c in Sources */,
 				CEE2BE1C1ADE620F0036B93A /* Graph_builder.c in Sources */,
+				CEE2BE2D1ADFA5E90036B93A /* Calculate_B0.c in Sources */,
 				CEE2BE171ADC4D7F0036B93A /* Array_s.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

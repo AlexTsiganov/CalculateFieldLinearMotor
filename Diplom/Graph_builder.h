@@ -12,9 +12,6 @@
 #include "Model_data.h"
 #include <stdio.h>
 
-void build_PDFLatex_inductor_model_graph()
-{
-    
-}
+void build_PDFLatex_inductor_model_graph();
 
 #endif

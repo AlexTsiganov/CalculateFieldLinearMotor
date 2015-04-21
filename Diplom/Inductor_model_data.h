@@ -19,12 +19,17 @@ typedef struct
     double width, height, prong_width, groove_width, groove_height;
     int groove_count;
     int dWidth_count, dHeight_count, prong_dWidth_count, groove_dHeight_count, groove_dWidth_count;
+    
+    double katushka_zazor, katushka_height;
+    int dKatushka_width_count, dKatushka_height_count;
+    
 }Inductor_model_data_params_s;
 
 typedef struct Model_inductor_data_s
 {
     Inductor_model_data_params_s *params;
     Array_s *array_model_points;
+    Array_s *array_points_faza_A, *array_points_faza_B, *array_points_faza_C;
 }Inductor_model_data_s;
 
 

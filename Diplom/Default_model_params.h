@@ -16,4 +16,6 @@ static const double cDefault_data_inducor_prong_width = 4.5; // зубец
 static const double cDefault_data_inducor_groove_width = 5.5; // паз
 static const double cDefault_data_inducor_groove_height = 37.5; // паз
 
+static const double cDefault_data_inducor_katushka_height = 16.5; // паз
+
 #endif

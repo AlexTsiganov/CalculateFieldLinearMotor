@@ -18,13 +18,15 @@ typedef struct
 
 typedef struct
 {
-    double size;
+    double size, value;
     Point_s *point, *tan_vector, *normal_vector;
 }Model_point_s;
 
 #define newPoint(...) newPoint_base((Point_s){__VA_ARGS__})
 Point_s* newPoint_base(Point_s point_args);
 void freePoint(Point_s *point);
+
+int isPointEquals(Point_s* p1, Point_s *p2);
 
 #define newModelPoint(...) newModelPoint_base((Model_point_s){__VA_ARGS__})
 Model_point_s* newModelPoint_base(Model_point_s modelPointArgs);
