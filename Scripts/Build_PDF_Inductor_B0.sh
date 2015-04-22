@@ -10,6 +10,6 @@ PATH_LATEX=/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinea
 PATH_SCRIPTS=/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Scripts
 PATH_PDF=/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Pdf
 
-pdflatex $PATH_LATEX/DrawInductorB0.tex &&
-mv $PATH_SCRIPTS/DrawInductorB0.pdf $PATH_PDF/Inductor_B0.pdf &&
+pdflatex $PATH_LATEX/Draw_Inductor_B0.tex &&
+mv $PATH_SCRIPTS/Draw_Inductor_B0.pdf $PATH_PDF/Inductor_B0.pdf &&
 open $PATH_PDF/Inductor_B0.pdf
