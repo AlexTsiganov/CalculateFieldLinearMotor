@@ -3,20 +3,63 @@
 \usepackage{pgfplots}
 \usepackage{comment}
 \usepackage{pgffor}
-\usepackage[paperheight=1000mm,paperwidth=1000mm]{geometry}
+\usepackage[letterpaper, total={130mm,297mm}, landscape,left=2mm, right=2mm, top=2mm, bottom=2mm]{geometry}
 
-
+\begin{document}
+qwerqwerqwe
 
 \begin{tikzpicture}
-\begin{axis}[ title=Inductor Model, xlabel={$width$}, ylabel={$height$},  xticklabel style={/pgf/number format/1000 sep=},
-y=0.1cm/1,x=0.115cm,
+\begin{axis}[ title=Inductor Model, xlabel={$width$}, ylabel={$height$},
+height=80mm,
+width=260mm,  xticklabel style={/pgf/number format/1000 sep=}
 ]
+
 
 \addplot[
 mark size=0.3pt,
 only marks,
-red
+mark = square*
 ] table {/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/inductor_model.data};
 
+\addplot[
+mark size=0.08mm,
+only marks,
+red,
+scatter,
+point meta=explicit symbolic,
+scatter/classes={
+x={mark = x, mark size=0.3mm},
+o={mark = *, mark size=0.08mm}
+}] table [meta=class] {/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/Faza_A.data};
+
+\addplot[
+mark size=0.08mm,
+only marks,
+blue,
+scatter,
+point meta=explicit symbolic,
+scatter/classes={
+x={mark = x, mark size=0.3mm},
+o={mark = *, mark size=0.08mm}
+}] table [meta=class] {/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/Faza_B.data};
+
+\addplot[
+mark size=0.08mm,
+only marks,
+green,
+scatter,
+point meta=explicit symbolic,
+scatter/classes={
+x={mark = x, mark size=0.3mm},
+o={mark = *, mark size=0.08mm}
+}] table [meta=class] {/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/Faza_C.data};
+
 \end{axis}
+
+asdfsdf
+
 \end{tikzpicture}
+
+13123213
+
+\end{document}
