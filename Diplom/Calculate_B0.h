@@ -12,6 +12,6 @@
 #include <stdio.h>
 #include "Inductor_model_data.h"
 
-void calulate_B0(Inductor_model_data_s *inductorModel);
+Array_s* calulate_B0(Inductor_model_data_s *inductorModel);
 
 #endif

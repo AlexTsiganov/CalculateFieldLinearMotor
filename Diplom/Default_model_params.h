@@ -9,6 +9,10 @@
 #ifndef Diplom_Default_model_params_h
 #define Diplom_Default_model_params_h
 
+static const double _m=1;
+static const double _m0=1;
+static const double _lyambda = 0.000001f;
+
 static const double cDefault_data_inductor_size_widht = 204.5;
 static const double cDefault_data_inductor_size_height = 44.5;
 

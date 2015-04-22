@@ -20,20 +20,6 @@ static Inductor_model_data_s *initInductorModelData()
     return newModelParams;
 }
 
-void print_model_Inductor(Inductor_model_data_s *model)
-{
-    for (int i=0; i<model->array_model_points->length; i++)
-    {
-        Model_point_s *point = (Model_point_s*)model->array_model_points->items[i];
-        printf("Point: (%.3f; %.3f) -> %.3f", point->point->x, point->point->y, point->size);
-        if (point->normal_vector)
-            printf(", normal_vector: (%.3f; %.3f)", point->normal_vector->x, point->normal_vector->y);
-        if (point->tan_vector)
-            printf(", tan_vector: (%.3f; %.3f)", point->tan_vector->x, point->tan_vector->y);
-        printf("\n");
-    }
-}
-
 int validateModelInductorDataParams(Inductor_model_data_params_s *model_params)
 {
     int result = 1;
@@ -58,7 +44,7 @@ int validateModelInductorDataParams(Inductor_model_data_params_s *model_params)
     return result;
 }
 
-void points_katushka(Array_s *array, Point_s *startPoint, double width, double height, double dWidth_count, double dHeight_count, int normal)
+void points_katushka(Array_s *array, Point_s *startPoint, double width, double height, double dWidth_count, double dHeight_count, double value)
 {
     double dKatushka_width = width/dWidth_count;
     double dKatushka_height = height/dHeight_count;
@@ -66,27 +52,33 @@ void points_katushka(Array_s *array, Point_s *startPoint, double width, double h
     {
         for (int j=0; j<dHeight_count; j++)
         {
-            array_add(array, newModelPoint(.value=normal, .point=newPoint(.x=startPoint->x+(2*i+1)*dKatushka_width/2, .y=startPoint->y-(2*j+1)*dKatushka_height/2)));
+            array_add(array, newModelPoint(.value=fabs(1000.f),
+                                           .znak = (value==0)?o:x,
+                                           .width=dKatushka_width,
+                                           .height=dKatushka_height,
+                                           .point=newPoint(.x=startPoint->x+(2*i+1)*dKatushka_width/2,
+                                                           .y=startPoint->y-(2*j+1)*dKatushka_height/2)));
         }
     }
 }
 
-#define verific_katushki  {\
-    if (dPoint.x >= model_params.width-2*model_params.prong_width-2*model_params.groove_width + model_params.katushka_zazor \
-         \
-        && dPoint.y>model_params.groove_height-2*model_params.katushka_zazor-model_params.katushka_height)\
-    {\
-        dPoint.x -= model_params.width-model_params.prong_width;\
-        dPoint.x += 2*model_params.prong_width+2*model_params.groove_width;\
-    }\
-    if (dPoint.x>model_params.width)\
-        dPoint.x -= model_params.width-model_params.prong_width;\
-    if (isPointEquals(startPoint, &dPoint))\
-        break;\
-}
+
 
 void points_katushki_in_faza(Array_s *array_points_faza, Point_s *startPoint, Inductor_model_data_params_s model_params)
 {
+    #define verific_katushki  {\
+        if (dPoint.x >= model_params.width-2*model_params.prong_width-2*model_params.groove_width + model_params.katushka_zazor \
+            && dPoint.y>model_params.groove_height-2*model_params.katushka_zazor-model_params.katushka_height)\
+        {\
+            dPoint.x -= model_params.width-model_params.prong_width;\
+            dPoint.x += 2*model_params.prong_width+2*model_params.groove_width;\
+        }\
+        if (dPoint.x>model_params.width)\
+            dPoint.x -= model_params.width-model_params.prong_width;\
+        if (isPointEquals(startPoint, &dPoint))\
+        break;\
+    }
+    
     Point_s dPoint = (Point_s){.x=startPoint->x, .y=startPoint->y};
     startPoint = newPoint(.x=startPoint->x, .y=startPoint->y);
     
@@ -135,6 +127,7 @@ void points_katushki_in_faza(Array_s *array_points_faza, Point_s *startPoint, In
         verific_katushki
         
     } while (1);
+#undef verific_katushki
 }
 
 Inductor_model_data_s* newModelInductorData_base(Inductor_model_data_params_s model_params)
@@ -219,7 +212,7 @@ Inductor_model_data_s* newModelInductorData_base(Inductor_model_data_params_s mo
     freePoint(dPoint);
     // Faza A
     dPoint = newPoint(.x=x0+model_params.prong_width+model_params.katushka_zazor,
-                          .y=y0+model_params.groove_height-model_params.katushka_zazor);
+                      .y=y0+model_params.groove_height-model_params.katushka_zazor);
     
     points_katushki_in_faza(inductor_model->array_points_faza_A, dPoint, model_params);
     
@@ -233,7 +226,8 @@ Inductor_model_data_s* newModelInductorData_base(Inductor_model_data_params_s mo
     dPoint->x += 3*model_params.prong_width+3*model_params.groove_width;
     points_katushki_in_faza(inductor_model->array_points_faza_B, dPoint, model_params);
     
+    freePoint(dPoint);
+    
     inductor_model->params = &model_params;
-    print_model_Inductor(inductor_model);
     return inductor_model;
 }

@@ -10,6 +10,9 @@
 		8406FE7E1AB85C2600D1D872 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 8406FE7D1AB85C2600D1D872 /* main.c */; };
 		CE435D821AC41B560082B8E8 /* Data_s.c in Sources */ = {isa = PBXBuildFile; fileRef = CE435D801AC41B560082B8E8 /* Data_s.c */; };
 		CE435D891AD39D5C0082B8E8 /* Model_data.c in Sources */ = {isa = PBXBuildFile; fileRef = CE435D871AD39D5C0082B8E8 /* Model_data.c */; };
+		CEE071711AE7864E00BAEE04 /* Math_fuctions.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE0716F1AE7864E00BAEE04 /* Math_fuctions.c */; };
+		CEE071741AE7A01300BAEE04 /* WriteFile.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE071721AE7A01300BAEE04 /* WriteFile.c */; };
+		CEE071771AE7A1D800BAEE04 /* Print.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE071751AE7A1D800BAEE04 /* Print.c */; };
 		CEE2BE171ADC4D7F0036B93A /* Array_s.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BE151ADC4D7F0036B93A /* Array_s.c */; };
 		CEE2BE1C1ADE620F0036B93A /* Graph_builder.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BE1A1ADE620F0036B93A /* Graph_builder.c */; };
 		CEE2BE1F1ADE627C0036B93A /* Inductor_model_data.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BE1D1ADE627C0036B93A /* Inductor_model_data.c */; };
@@ -44,6 +47,14 @@
 		CEE071681AE64C5C00BAEE04 /* Faza_B.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Faza_B.data; sourceTree = "<group>"; };
 		CEE071691AE64C5C00BAEE04 /* Faza_C.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Faza_C.data; sourceTree = "<group>"; };
 		CEE0716E1AE655D200BAEE04 /* Inductor_model.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Inductor_model.pdf; sourceTree = "<group>"; };
+		CEE0716F1AE7864E00BAEE04 /* Math_fuctions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Math_fuctions.c; sourceTree = "<group>"; };
+		CEE071701AE7864E00BAEE04 /* Math_fuctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Math_fuctions.h; sourceTree = "<group>"; };
+		CEE071721AE7A01300BAEE04 /* WriteFile.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = WriteFile.c; sourceTree = "<group>"; };
+		CEE071731AE7A01300BAEE04 /* WriteFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteFile.h; sourceTree = "<group>"; };
+		CEE071751AE7A1D800BAEE04 /* Print.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Print.c; sourceTree = "<group>"; };
+		CEE071761AE7A1D800BAEE04 /* Print.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Print.h; sourceTree = "<group>"; };
+		CEE0717A1AE7C68D00BAEE04 /* Calculate_Inductor_B0.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Calculate_Inductor_B0.data; sourceTree = "<group>"; };
+		CEE0717B1AE7C72600BAEE04 /* DrawInductorB0.tex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DrawInductorB0.tex; sourceTree = "<group>"; };
 		CEE2BE151ADC4D7F0036B93A /* Array_s.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Array_s.c; sourceTree = "<group>"; };
 		CEE2BE161ADC4D7F0036B93A /* Array_s.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Array_s.h; sourceTree = "<group>"; };
 		CEE2BE181ADC51590036B93A /* Default_model_params.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Default_model_params.h; sourceTree = "<group>"; };
@@ -116,6 +127,10 @@
 				CEE2BE1A1ADE620F0036B93A /* Graph_builder.c */,
 				CEE2BE191ADD1B3D0036B93A /* Config.h */,
 				8406FE7D1AB85C2600D1D872 /* main.c */,
+				CEE071721AE7A01300BAEE04 /* WriteFile.c */,
+				CEE071731AE7A01300BAEE04 /* WriteFile.h */,
+				CEE071751AE7A1D800BAEE04 /* Print.c */,
+				CEE071761AE7A1D800BAEE04 /* Print.h */,
 			);
 			name = Code;
 			sourceTree = "<group>";
@@ -139,6 +154,7 @@
 		CE435D851AD39AE50082B8E8 /* Latex */ = {
 			isa = PBXGroup;
 			children = (
+				CEE0717B1AE7C72600BAEE04 /* DrawInductorB0.tex */,
 				CEF32F0D1AE566F400A80155 /* 1.tex */,
 				CE435D861AD39AE50082B8E8 /* DrawModel.tex */,
 				CEE2BE271ADF9C8F0036B93A /* Test.tex */,
@@ -149,6 +165,7 @@
 		CE435D8B1AD3A2380082B8E8 /* Data files */ = {
 			isa = PBXGroup;
 			children = (
+				CEE0717A1AE7C68D00BAEE04 /* Calculate_Inductor_B0.data */,
 				CEE071681AE64C5C00BAEE04 /* Faza_B.data */,
 				CEE071691AE64C5C00BAEE04 /* Faza_C.data */,
 				CEE2BE2F1ADFB1010036B93A /* Faza_A.data */,
@@ -191,8 +208,10 @@
 				CEE2BE241ADE72A30036B93A /* Calculate_base.c */,
 				CEE2BE291ADFA5750036B93A /* Intergals.h */,
 				CEE2BE281ADFA5750036B93A /* Intergals.c */,
-				CEE2BE2B1ADFA5E90036B93A /* Calculate_B0.c */,
 				CEE2BE2C1ADFA5E90036B93A /* Calculate_B0.h */,
+				CEE2BE2B1ADFA5E90036B93A /* Calculate_B0.c */,
+				CEE071701AE7864E00BAEE04 /* Math_fuctions.h */,
+				CEE0716F1AE7864E00BAEE04 /* Math_fuctions.c */,
 			);
 			name = Calculate;
 			sourceTree = "<group>";
@@ -204,6 +223,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8406FE811AB85C2600D1D872 /* Build configuration list for PBXNativeTarget "Diplom" */;
 			buildPhases = (
+				CEE071781AE7BEEF00BAEE04 /* ShellScript */,
 				8406FE761AB85C2600D1D872 /* Sources */,
 				8406FE771AB85C2600D1D872 /* Frameworks */,
 				8406FE781AB85C2600D1D872 /* CopyFiles */,
@@ -248,6 +268,22 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		CEE071781AE7BEEF00BAEE04 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8406FE761AB85C2600D1D872 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -255,10 +291,13 @@
 			files = (
 				CEE2BE2A1ADFA5750036B93A /* Intergals.c in Sources */,
 				8406FE7E1AB85C2600D1D872 /* main.c in Sources */,
+				CEE071711AE7864E00BAEE04 /* Math_fuctions.c in Sources */,
 				CEE2BE261ADE72A30036B93A /* Calculate_base.c in Sources */,
 				CEE2BE1F1ADE627C0036B93A /* Inductor_model_data.c in Sources */,
 				CE435D821AC41B560082B8E8 /* Data_s.c in Sources */,
+				CEE071771AE7A1D800BAEE04 /* Print.c in Sources */,
 				CEE2BE221ADE64ED0036B93A /* Model_point.c in Sources */,
+				CEE071741AE7A01300BAEE04 /* WriteFile.c in Sources */,
 				CE435D891AD39D5C0082B8E8 /* Model_data.c in Sources */,
 				CEE2BE1C1ADE620F0036B93A /* Graph_builder.c in Sources */,
 				CEE2BE2D1ADFA5E90036B93A /* Calculate_B0.c in Sources */,

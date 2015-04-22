@@ -9,9 +9,6 @@
 #ifndef __Diplom__Calculate_base__
 #define __Diplom__Calculate_base__
 
-#include <stdio.h>
-#include "Model_point.h"
 
-double calculate_line_size(Point_s *start_point, Point_s *end_point);
 
 #endif
