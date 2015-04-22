@@ -16,43 +16,9 @@ width=260mm,  xticklabel style={/pgf/number format/1000 sep=}
 
 
 \addplot[
-mark size=0.3pt,
-only marks,
 mark = square*
-] table {/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/inductor_model.data};
+] table {/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/Calculate_Inductor_B0.data};
 
-\addplot[
-mark size=0.08mm,
-only marks,
-red,
-scatter,
-point meta=explicit symbolic,
-scatter/classes={
-x={mark = x, mark size=0.3mm},
-o={mark = *, mark size=0.08mm}
-}] table [meta=class] {/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/Faza_A.data};
-
-\addplot[
-mark size=0.08mm,
-only marks,
-blue,
-scatter,
-point meta=explicit symbolic,
-scatter/classes={
-x={mark = x, mark size=0.3mm},
-o={mark = *, mark size=0.08mm}
-}] table [meta=class] {/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/Faza_B.data};
-
-\addplot[
-mark size=0.08mm,
-only marks,
-green,
-scatter,
-point meta=explicit symbolic,
-scatter/classes={
-x={mark = x, mark size=0.3mm},
-o={mark = *, mark size=0.08mm}
-}] table [meta=class] {/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/Faza_C.data};
 
 \end{axis}
 
