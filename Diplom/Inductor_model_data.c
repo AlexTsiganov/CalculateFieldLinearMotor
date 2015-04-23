@@ -34,6 +34,12 @@ int validateModelInductorDataParams(Inductor_model_data_params_s *model_params)
     model_params->prong_dWidth_count = 20;
     model_params->groove_dHeight_count = 45;
     model_params->groove_dWidth_count = 20;
+    
+    model_params->dWidth_count = 50;
+    model_params->dHeight_count = 27;
+    model_params->prong_dWidth_count = 10;
+    model_params->groove_dHeight_count = 15;
+    model_params->groove_dWidth_count = 5;
 
     model_params->groove_count = 20;
 
@@ -45,8 +51,8 @@ int validateModelInductorDataParams(Inductor_model_data_params_s *model_params)
     
     model_params->katushka_zazor = 0.5;
     model_params->katushka_height = cDefault_data_inducor_katushka_height;
-    model_params->dKatushka_width_count = 4;
-    model_params->dKatushka_height_count = 20;
+    model_params->dKatushka_width_count = 1;
+    model_params->dKatushka_height_count = 1;
     return result;
 }
 
@@ -223,12 +229,10 @@ Inductor_model_data_s* newModelInductorData_base(Inductor_model_data_params_s mo
     points_katushki_in_faza(inductor_model->array_points_faza_A, dPoint, model_params);
     
     // Faza C
-    model_params.dKatushka_width_count+=2;
     dPoint->x += 3*model_params.prong_width+3*model_params.groove_width;
     points_katushki_in_faza(inductor_model->array_points_faza_C, dPoint, model_params);
     
     // Faza B
-     model_params.dKatushka_width_count+=2;
     dPoint->x += 3*model_params.prong_width+3*model_params.groove_width;
     points_katushki_in_faza(inductor_model->array_points_faza_B, dPoint, model_params);
     
