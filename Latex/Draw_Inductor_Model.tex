@@ -3,17 +3,29 @@
 \usepackage{pgfplots}
 \usepackage{comment}
 \usepackage{pgffor}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{pgfplotstable}
+\usepgfplotslibrary{dateplot}
 \usepackage[letterpaper, total={130mm,297mm}, landscape,left=2mm, right=2mm, top=2mm, bottom=2mm]{geometry}
 
 \begin{document}
+%\pgfplotstabletypeset[columns={,,}]{/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/Faza_A.data}
+
 qwerqwerqwe
 
 \begin{tikzpicture}
-\begin{axis}[ title=Inductor Model, xlabel={$width$}, ylabel={$height$},
+\begin{axis}[ title=Inductor Model, xlabel={$x, mm$}, ylabel={$y, mm$},
 height=80mm,
-width=260mm,  xticklabel style={/pgf/number format/1000 sep=}
+width=260mm,  xticklabel style={/pgf/number format/1000 sep=},
+legend style={
+    at={(0.5,-0.2)},
+    anchor=north,
+    legend columns=-1,
+    overlay,
+    every axis plot post/.append style={mark=none},
+    enlargelimits=true}
 ]
-
 
 \addplot[
 mark size=0.3pt,
@@ -54,6 +66,8 @@ x={mark = x, mark size=0.3mm},
 o={mark = *, mark size=0.08mm}
 }] table [meta=class] {/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/Faza_C.data};
 
+\legend{ Индуктор,, Фаза А,, Фаза В,, Фаза С}
+
 \end{axis}
 
 asdfsdf
@@ -61,5 +75,6 @@ asdfsdf
 \end{tikzpicture}
 
 13123213
+
 
 \end{document}

@@ -3,22 +3,24 @@
 \usepackage{pgfplots}
 \usepackage{comment}
 \usepackage{pgffor}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
 \usepackage[letterpaper, total={130mm,297mm}, landscape,left=2mm, right=2mm, top=2mm, bottom=2mm]{geometry}
 
 \begin{document}
-qwerqwerqwe
 
+Текст
 \begin{tikzpicture}
-\begin{axis}[ title=Inductor Model, xlabel={$width$}, ylabel={$height$},
+\begin{axis}[ title=Рапределение значения B0 по границе индуктора (правой части матрицы), xlabel={Номерация точек с координаты (0,0)}, ylabel={B0},
 height=80mm,
-width=260mm,  xticklabel style={/pgf/number format/1000 sep=}
+width=260mm,  xticklabel style={/pgf/number format/1000 sep=},
+%enlarge x limits=1
 ]
 
-
 \addplot[
-mark = square*
-] table {/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/Calculate_Inductor_B0.data};
-
+mark size = 0.001mm,
+red
+] table[x=n, y=z] {/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/Calculate_Inductor_B0.data};
 
 \end{axis}
 
@@ -26,6 +28,46 @@ asdfsdf
 
 \end{tikzpicture}
 
-13123213
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tikzpicture}
+\begin{axis}[ title=Рапределение значения B0 по границе индуктора (правой части матрицы), xlabel={}, ylabel={B0},
+height=80mm,
+width=260mm,  xticklabel style={/pgf/number format/1000 sep=},
+axis x line=center,
+axis y line=left
+]
+
+\addplot[
+mark size = 0.001mm,
+red
+] table[x=n, y=z] {/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/Calculate_Inductor_B0.data};
+
+\end{axis}
+
+asdfsdf
+
+\end{tikzpicture}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tikzpicture}
+\begin{axis}[ title=Рапределение значения B0 по границе индуктора (правой части матрицы), xlabel={}, ylabel={B0},
+height=140mm,
+width=260mm,
+%view={-45}{45},
+only marks
+]
+
+\addplot3[
+%surf,
+mesh,scatter,
+] table[x=x, y=y, z=z] {/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/Calculate_Inductor_B0.data};
+
+\end{axis}
+
+asdfsdf
+
+\end{tikzpicture}
 
 \end{document}

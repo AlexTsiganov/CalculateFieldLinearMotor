@@ -29,6 +29,12 @@ int validateModelInductorDataParams(Inductor_model_data_params_s *model_params)
     model_params->groove_dHeight_count = 28;
     model_params->groove_dWidth_count = 5;
     
+    model_params->dWidth_count = 100;
+    model_params->dHeight_count = 50;
+    model_params->prong_dWidth_count = 20;
+    model_params->groove_dHeight_count = 45;
+    model_params->groove_dWidth_count = 20;
+
     model_params->groove_count = 20;
 
     model_params->prong_width = cDefault_data_inducor_prong_width;
@@ -52,7 +58,7 @@ void points_katushka(Array_s *array, Point_s *startPoint, double width, double h
     {
         for (int j=0; j<dHeight_count; j++)
         {
-            array_add(array, newModelPoint(.value=fabs(1000.f),
+            array_add(array, newModelPoint(.value=(value==0)?1000:-1000,
                                            .znak = (value==0)?o:x,
                                            .width=dKatushka_width,
                                            .height=dKatushka_height,

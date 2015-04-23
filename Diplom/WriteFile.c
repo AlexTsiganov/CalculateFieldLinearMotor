@@ -28,7 +28,7 @@ void write_Inductor_model_faza_to_data_file(Array_s *array_points, char *filePat
     FILE *f = fopen(filePath, "w");
     if (!f)
     return;
-    fprintf(f, "x \ty\tclass\n");
+    fprintf(f, "x\ty\tclass\n");
     for (int i=0; i<array_points->length; i++)
     {
         Point_s *point = ((Model_point_s*)array_points->items[i])->point;
@@ -43,11 +43,11 @@ void write_calculate_B0_to_file(Array_s *array, char *filePath)
     FILE *f = fopen(filePath, "w");
     if (!f)
     return;
-    fprintf(f, "point_x \tpoint_y\n");
+    fprintf(f, "n\tx\ty\tz\n");
     for (int i=0; i<array->length; i++)
     {
         Model_point_s *model_point = (Model_point_s*)array->items[i];
-        fprintf(f, "%d\t%f\n", i,model_point->value);
+        fprintf(f, "%d\t%f\t%f\t%f\n",i , model_point->point->x, model_point->point->y, model_point->value);
     }
     fclose(f);
 }
