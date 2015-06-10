@@ -20,16 +20,34 @@ typedef struct
 Point_s* newPoint_base(Point_s point_args);
 void freePoint(Point_s *point);
 
-typedef struct
+/*typedef struct
 {
     double value;
     double size, width, height;
     Point_s *point, *tan_vector, *normal_vector;
     enum {o, x} znak;
-}Model_point_s;
+}Model_point_s;*/
+
+typedef struct
+{
+    double dSize;
+    Point_s *point, *tan_vector, *normal_vector;
+}Model_inductor_point_s;
+
+typedef struct
+{
+    enum {o, x} drift;
+    double dWidth, dHeight, I;
+    Point_s *point;
+}Model_katuska_point_s;
+
+/*
+#define newoModelPoint(...) newModelPoint_base((Model_point_s){__VA_ARGS__})
+Model_point_s newoModelPoint_base(Model_point_s modelPointArgs);
 
 #define newModelPoint(...) newModelPoint_base((Model_point_s){__VA_ARGS__})
 Model_point_s* newModelPoint_base(Model_point_s modelPointArgs);
+ */
 
 /*typedef struct
 {
@@ -60,6 +78,7 @@ double get_y(Model_point_s *modelPoint);
 double get_Size(Model_point_s *modelPoint);
 double get_tan_x(Model_point_s *modelPoint);
 double get_tan_y(Model_point_s *modelPoint);
-
+double get_nor_x(Model_point_s *modelPoint);
+double get_nor_y(Model_point_s *modelPoint);
 
 #endif

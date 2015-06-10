@@ -13,5 +13,6 @@
 #include "Array_s.h"
 
 void print_Array_s(Array_s *array);
+void print_Array_s_Matrix_Jitems(Array_s *array);
 
 #endif

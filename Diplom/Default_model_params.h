@@ -8,11 +8,16 @@
 
 #ifndef Diplom_Default_model_params_h
 #define Diplom_Default_model_params_h
+
 #include <math.h>
 
-static const double _m0=4*M_PI*1e-7;
+/*static const double _m0=4*M_PI*1e-7;
 static const double _m=1000*_m0;
-static const double _lyambda = (_m-_m0)/(_m+_m0);
+static const double _lyambda = (_m-_m0)/(_m+_m0);*/
+
+#define _m0 4*M_PI*1e-7
+#define _m 1000*_m0
+#define _lyambda (_m-_m0)/(_m+_m0)
 
 static const double cDefault_data_inductor_size_widht = 204.5;
 static const double cDefault_data_inductor_size_height = 44.5;

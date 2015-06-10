@@ -10,6 +10,8 @@
 		8406FE7E1AB85C2600D1D872 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 8406FE7D1AB85C2600D1D872 /* main.c */; };
 		CE435D821AC41B560082B8E8 /* Data_s.c in Sources */ = {isa = PBXBuildFile; fileRef = CE435D801AC41B560082B8E8 /* Data_s.c */; };
 		CE435D891AD39D5C0082B8E8 /* Model_data.c in Sources */ = {isa = PBXBuildFile; fileRef = CE435D871AD39D5C0082B8E8 /* Model_data.c */; };
+		CE8524691B26C523004CAD55 /* Calculate_J.c in Sources */ = {isa = PBXBuildFile; fileRef = CE8524671B26C523004CAD55 /* Calculate_J.c */; };
+		CEDC7CCB1B28353F0021E7E4 /* Main_calculate.c in Sources */ = {isa = PBXBuildFile; fileRef = CEDC7CCA1B28353F0021E7E4 /* Main_calculate.c */; };
 		CEE071711AE7864E00BAEE04 /* Math_fuctions.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE0716F1AE7864E00BAEE04 /* Math_fuctions.c */; };
 		CEE071741AE7A01300BAEE04 /* WriteFile.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE071721AE7A01300BAEE04 /* WriteFile.c */; };
 		CEE071771AE7A1D800BAEE04 /* Print.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE071751AE7A1D800BAEE04 /* Print.c */; };
@@ -43,6 +45,10 @@
 		CE435D871AD39D5C0082B8E8 /* Model_data.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Model_data.c; sourceTree = "<group>"; };
 		CE435D881AD39D5C0082B8E8 /* Model_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model_data.h; sourceTree = "<group>"; };
 		CE435D8C1AD3A2380082B8E8 /* inductor_model.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = inductor_model.data; sourceTree = "<group>"; };
+		CE8524671B26C523004CAD55 /* Calculate_J.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Calculate_J.c; sourceTree = "<group>"; };
+		CE8524681B26C523004CAD55 /* Calculate_J.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calculate_J.h; sourceTree = "<group>"; };
+		CEDC7CC91B2832510021E7E4 /* Calculate_Matrix_J0.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Calculate_Matrix_J0.data; sourceTree = "<group>"; };
+		CEDC7CCA1B28353F0021E7E4 /* Main_calculate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Main_calculate.c; sourceTree = "<group>"; };
 		CEE071681AE64C5C00BAEE04 /* Faza_B.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Faza_B.data; sourceTree = "<group>"; };
 		CEE071691AE64C5C00BAEE04 /* Faza_C.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Faza_C.data; sourceTree = "<group>"; };
 		CEE0716E1AE655D200BAEE04 /* Inductor_model.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Inductor_model.pdf; sourceTree = "<group>"; };
@@ -162,6 +168,7 @@
 		CE435D8B1AD3A2380082B8E8 /* Data files */ = {
 			isa = PBXGroup;
 			children = (
+				CEDC7CC91B2832510021E7E4 /* Calculate_Matrix_J0.data */,
 				CEE0717A1AE7C68D00BAEE04 /* Calculate_Inductor_B0.data */,
 				CEE071681AE64C5C00BAEE04 /* Faza_B.data */,
 				CEE071691AE64C5C00BAEE04 /* Faza_C.data */,
@@ -210,6 +217,9 @@
 				CEE2BE2B1ADFA5E90036B93A /* Calculate_B0.c */,
 				CEE071701AE7864E00BAEE04 /* Math_fuctions.h */,
 				CEE0716F1AE7864E00BAEE04 /* Math_fuctions.c */,
+				CE8524681B26C523004CAD55 /* Calculate_J.h */,
+				CE8524671B26C523004CAD55 /* Calculate_J.c */,
+				CEDC7CCA1B28353F0021E7E4 /* Main_calculate.c */,
 			);
 			name = Calculate;
 			sourceTree = "<group>";
@@ -288,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEE2BE2A1ADFA5750036B93A /* Intergals.c in Sources */,
+				CEDC7CCB1B28353F0021E7E4 /* Main_calculate.c in Sources */,
 				8406FE7E1AB85C2600D1D872 /* main.c in Sources */,
 				CEE071711AE7864E00BAEE04 /* Math_fuctions.c in Sources */,
 				CEE2BE261ADE72A30036B93A /* Calculate_base.c in Sources */,
@@ -300,6 +311,7 @@
 				CEE2BE1C1ADE620F0036B93A /* Graph_builder.c in Sources */,
 				CEE2BE2D1ADFA5E90036B93A /* Calculate_B0.c in Sources */,
 				CEE2BE171ADC4D7F0036B93A /* Array_s.c in Sources */,
+				CE8524691B26C523004CAD55 /* Calculate_J.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,12 +396,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"/usr/local/lib/glib-2.0/**",
 					"/usr/local/lib/glib-2.0/include/**",
+					"/Users/alextsiganov/Downloads/usr/local/lib/gcc/x86_64-apple-darwin14.4.0/5.1.0/include/**",
 				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 			};
@@ -399,6 +414,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_VERSION = "";
+				OTHER_LDFLAGS = "-fopenmp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 			};

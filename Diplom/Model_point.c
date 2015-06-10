@@ -36,6 +36,16 @@ int isTan_y(Model_point_s *modelPoint)
     return modelPoint->tan_vector->y == 0;
 }
 
+int isNor_x(Model_point_s *modelPoint)
+{
+    return modelPoint->tan_vector->x == 0;
+}
+
+int isNor_y(Model_point_s *modelPoint)
+{
+    return modelPoint->tan_vector->y == 0;
+}
+
 double get_x(Model_point_s *modelPoint)
 {
     return modelPoint->point->x;
@@ -59,6 +69,16 @@ double get_tan_x(Model_point_s *modelPoint)
 double get_tan_y(Model_point_s *modelPoint)
 {
     return modelPoint->tan_vector->y;
+}
+
+double get_nor_x(Model_point_s *modelPoint)
+{
+    return modelPoint->normal_vector->x;
+}
+
+double get_nor_y(Model_point_s *modelPoint)
+{
+    return modelPoint->normal_vector->y;
 }
 
 Model_point_s* newModelPoint_base(Model_point_s modelPointArgs)

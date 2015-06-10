@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 
-#define DEFAULT_CAPACITY 500
+#define DEFAULT_CAPACITY 1000
 
 typedef void* Array_Item_t;
 
@@ -25,7 +25,7 @@ typedef struct
     void (*on_item_clear)(Array_Item_t *array_item);
 } Array_s;
 
-Array_s* array_new();
+Array_s* array_new(int length);
 void array_add(Array_s *array, Array_Item_t item);
 Array_Item_t* array_get(Array_s *array);
 Array_Item_t* array_get_by_index(Array_s *array, int index);

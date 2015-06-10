@@ -11,13 +11,16 @@
 
 Array_Item_t *item_not_found;
 
-Array_s* array_new()
+Array_s* array_new(int length)
 {
     static void *sItem_not_found;
     if (!item_not_found)
         item_not_found = sItem_not_found;
     Array_s *newArray = malloc(sizeof(Array_s));
-    *newArray = (Array_s){.capacity = DEFAULT_CAPACITY, .length = 0, .items = malloc(DEFAULT_CAPACITY*sizeof(Array_s))};
+    if (length>0)
+        *newArray = (Array_s){.capacity = length, .length=0, .items = malloc(length*sizeof(Array_Item_t))};
+    else
+        *newArray = (Array_s){.capacity = DEFAULT_CAPACITY, .length=0, .items = malloc(DEFAULT_CAPACITY*sizeof(Array_Item_t))};
     return newArray;
 }
 
@@ -34,13 +37,13 @@ void array_add(Array_s *array, Array_Item_t item)
 Array_Item_t* array_get_by_index(Array_s *array, int index)
 {
     if (index >= 0 && index < array->length)
-        return &array->items[index];
+        return array->items[index];
     return item_not_found;
 }
 
 Array_Item_t* array_get(Array_s *array)
 {
-    return &array->items[array->length];
+    return array->items[array->length];
 }
 
 void array_clear(Array_s *array)

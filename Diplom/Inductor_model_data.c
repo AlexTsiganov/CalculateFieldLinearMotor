@@ -9,14 +9,17 @@
 #include "Inductor_model_data.h"
 #include <stdlib.h>
 #include <math.h>
+#include "Config.h"
+
+//#include <omp.h>
 
 static Inductor_model_data_s *initInductorModelData()
 {
     Inductor_model_data_s *newModelParams = malloc(sizeof(Inductor_model_data_s));
-    *newModelParams = (Inductor_model_data_s){.array_model_points = array_new(),
-                                              .array_points_faza_A = array_new(),
-                                              .array_points_faza_B = array_new(),
-                                              .array_points_faza_C = array_new()};
+    *newModelParams = (Inductor_model_data_s){.array_model_points = array_new(0),
+                                              .array_points_faza_A = array_new(0),
+                                              .array_points_faza_B = array_new(0),
+                                              .array_points_faza_C = array_new(0)};
     return newModelParams;
 }
 
@@ -155,20 +158,33 @@ Inductor_model_data_s* newModelInductorData_base(Inductor_model_data_params_s mo
     double dInductor_Width = model_params.width/model_params.dWidth_count;
     double dInductor_Height = model_params.height/model_params.dHeight_count;
     
+    if (DEBUG_OpenMP)
+        #pragma omp parallel for
+        inductor_model->model = malloc(sizeof(Model_point_s)*model_params.prong_dWidth_count);
     for (int i=0; i<model_params.prong_dWidth_count; i++)
-        array_add(inductor_model->array_model_points,
+    {
+        inductor_model->model[i] = (Model_point_s){ .point = newPoint(.x=x0+(2*i+1)*dProng_Width/2, .y=y0),
+                                                    .normal_vector = newPoint(.x=0, .y=-1),
+                                                    .size = dProng_Width,
+                                                    .tan_vector = newPoint(.x=1, .y=0),
+                                                    .width = 0 };
+        /*array_add(inductor_model->array_model_points,
                   newModelPoint(.point=newPoint(.x=x0+(2*i+1)*dProng_Width/2, .y=y0),
                                 .normal_vector=newPoint(.x=0, .y=-1),
                                 .size=dProng_Width,
-                                .tan_vector=newPoint(.x=1, .y=0)));
-    
+                                .tan_vector=newPoint(.x=1, .y=0),
+                                .width=0));*/
+    }
+    Model_point_s *pp = &inductor_model->model[1];
     Point_s *dPoint = newPoint();
-    
+
     for (int j=0; j<model_params.groove_count; j++)
     {
         dPoint->x = x0+model_params.groove_width*(j)+model_params.prong_width*(j+1);
         dPoint->y = y0;
         
+        if (DEBUG_OpenMP)
+            #pragma omp parallel for
         for (int i=0; i<model_params.groove_dHeight_count; i++)
             array_add(inductor_model->array_model_points, newModelPoint(.point=newPoint(.x=dPoint->x, .y=dPoint->y+(2*i+1)*dGroove_Height/2),
                                                                         .normal_vector=newPoint(.x=1, .y=0),
@@ -177,6 +193,8 @@ Inductor_model_data_s* newModelInductorData_base(Inductor_model_data_params_s mo
         
         dPoint->y += model_params.groove_height;
         
+        if (DEBUG_OpenMP)
+            #pragma omp parallel for
         for (int i=0; i<model_params.groove_dWidth_count; i++)
             array_add(inductor_model->array_model_points, newModelPoint(.point=newPoint(.x=dPoint->x+(2*i+1)*dGroove_Width/2, .y=dPoint->y),
                                                                         .normal_vector=newPoint(.x=0, .y=-1),
@@ -185,6 +203,8 @@ Inductor_model_data_s* newModelInductorData_base(Inductor_model_data_params_s mo
         
         dPoint->x += model_params.groove_width;
         
+        if (DEBUG_OpenMP)
+            #pragma omp parallel for
         for (int i=0; i<model_params.groove_dHeight_count; i++)
             array_add(inductor_model->array_model_points, newModelPoint(.point=newPoint(.x=dPoint->x, .y=dPoint->y-(2*i+1)*dGroove_Height/2),
                                                                         .normal_vector=newPoint(.x=-1, .y=0),
@@ -193,6 +213,8 @@ Inductor_model_data_s* newModelInductorData_base(Inductor_model_data_params_s mo
         
         dPoint->y -= model_params.groove_height;
         
+        if (DEBUG_OpenMP)
+            #pragma omp parallel for
         for (int i=0; i<model_params.prong_dWidth_count; i++)
             array_add(inductor_model->array_model_points, newModelPoint(.point=newPoint(.x=dPoint->x+(2*i+1)*dProng_Width/2, .y=dPoint->y),
                                                                         .normal_vector=newPoint(.x=0, .y=-1),
@@ -201,6 +223,8 @@ Inductor_model_data_s* newModelInductorData_base(Inductor_model_data_params_s mo
     }
     
     dPoint->x += model_params.prong_width;
+    if (DEBUG_OpenMP)
+        #pragma omp1 parallel for
     for (int i=0; i<model_params.dHeight_count; i++)
         array_add(inductor_model->array_model_points, newModelPoint(.point=newPoint(.x=dPoint->x, .y=dPoint->y+(2*i+1)*dInductor_Height/2),
                                                                     .normal_vector=newPoint(.x=1, .y=0),
@@ -208,6 +232,7 @@ Inductor_model_data_s* newModelInductorData_base(Inductor_model_data_params_s mo
                                                                     .tan_vector=newPoint(.x=0, .y=1)));
     
     dPoint->y += model_params.height;
+    #pragma omp parallel for
     for (int i=0; i<model_params.dWidth_count; i++)
         array_add(inductor_model->array_model_points, newModelPoint(.point=newPoint(dPoint->x-(2*i+1)*dInductor_Width/2, dPoint->y),
                                                                     .normal_vector=newPoint(.x=0, .y=1),
@@ -215,6 +240,7 @@ Inductor_model_data_s* newModelInductorData_base(Inductor_model_data_params_s mo
                                                                     .tan_vector=newPoint(.x=-1, .y=0)));
     
     dPoint->x -= model_params.width;
+    #pragma omp parallel for
     for (int i=0; i<model_params.dHeight_count; i++)
         array_add(inductor_model->array_model_points, newModelPoint(.point=newPoint(.x=dPoint->x, .y=dPoint->y-(2*i+1)*dInductor_Height/2),
                                                                     .normal_vector=newPoint(.x=-1, .y=0),

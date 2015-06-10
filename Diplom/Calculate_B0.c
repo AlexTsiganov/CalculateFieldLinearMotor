@@ -13,7 +13,7 @@
 
 Array_s* calulate_B0(Inductor_model_data_s *inductorModel)
 {
-    Array_s *array_B0 = array_new();
+    Array_s *array_B0 = array_new(0);
     for (int i=0; i<inductorModel->array_model_points->length; i++)
     {
         double sum = 0;

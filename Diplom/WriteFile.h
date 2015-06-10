@@ -14,5 +14,6 @@
 
 void write_Inductor_model_to_data_files(Inductor_model_data_s *inductorModel);
 void write_calculate_B0_to_file(Array_s *array, char *filePath);
+void write_calculate_Matrix_AJ_to_file(Array_s *array, char *filePath);
 
 #endif

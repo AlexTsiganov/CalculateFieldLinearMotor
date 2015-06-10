@@ -57,7 +57,7 @@ void write_Inductor_model_for_Grapher(Inductor_model_data_s *inductor)
 #warning TODO:
     FILE *f = fopen("/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/model_inductor.txt", "w");
     if (!f)
-    return;
+        return;
     for (int i=0; i<inductor->array_model_points->length; i++)
     {
         double x = ((Model_point_s*)inductor->array_model_points->items[i])->point->x;
@@ -76,4 +76,24 @@ void write_Inductor_model_to_data_files(Inductor_model_data_s *inductorModel)
     write_Inductor_model_faza_to_data_file(inductorModel->array_points_faza_A, PATH_INDUCTOR_MODEL_FAZA_A_DATA);
     write_Inductor_model_faza_to_data_file(inductorModel->array_points_faza_B, PATH_INDUCTOR_MODEL_FAZA_B_DATA);
     write_Inductor_model_faza_to_data_file(inductorModel->array_points_faza_C, PATH_INDUCTOR_MODEL_FAZA_C_DATA);
+}
+
+void write_calculate_Matrix_AJ_to_file(Array_s *array, char *filePath)
+{
+    FILE *f = fopen(filePath, "w");
+    if (!f)
+        return;
+    int length = sqrt(array->length);
+    for (int i=0; i<length; i++)
+    {
+        double *d1 = ((double*)array_get_by_index(array, i*length));
+        fprintf(f, "%.3f", *d1);
+        for (int k=1; k<length; k++)
+        {
+            double *d = ((double*)array_get_by_index(array, i*length+k));
+            fprintf(f, "%-10.3f", *d);
+        }
+        fprintf(f, "******\n");
+    }
+    fclose(f);
 }

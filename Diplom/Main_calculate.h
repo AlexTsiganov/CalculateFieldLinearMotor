@@ -10,5 +10,6 @@
 #define Diplom_Main_calculate_h
 
 #include "Calculate_B0.h"
+#include "Calculate_J.h"
 
 #endif

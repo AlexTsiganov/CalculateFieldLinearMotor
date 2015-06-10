@@ -9,9 +9,9 @@
 #ifndef __Diplom__Math_fuctions__
 #define __Diplom__Math_fuctions__
 
-#include <stdio.h>
 #include "Model_point.h"
 
 double calculate_line_size(Point_s *start_point, Point_s *end_point);
+double arctan3(double y, double x);
 
 #endif

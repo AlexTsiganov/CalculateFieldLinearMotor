@@ -8,6 +8,9 @@
 
 #pragma once
 
+#define DEBUG_OpenMP 1
+
+
 #define PATH_MODEL_DATA_FILES "/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data\ files/"
 
 #define PATH_INDUCTOR_MODEL_DATA PATH_MODEL_DATA_FILES"inductor_model.data"
@@ -18,3 +21,4 @@
 #define PATH_INDUCTOR_MODEL_FAZA_C_DATA PATH_MODEL_DATA_FILES"Faza_C.data"
 
 #define PATH_RESULT_INDUCTOR_B0_DATA PATH_MODEL_DATA_FILES"Calculate_Inductor_B0.data"
+#define PATH_RESULT_MATRIX_AJ_DATA PATH_MODEL_DATA_FILES"Calculate_Matrix_J0.data"

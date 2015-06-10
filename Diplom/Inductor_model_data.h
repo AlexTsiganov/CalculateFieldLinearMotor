@@ -25,9 +25,14 @@ typedef struct
     
 }Inductor_model_data_params_s;
 
+
+
 typedef struct Model_inductor_data_s
 {
     Inductor_model_data_params_s *params;
+    Model_inductor_point_s *model;
+    int model_size;
+    Model_katuska_point_s *katA, katB, katC;
     Array_s *array_model_points;
     Array_s *array_points_faza_A, *array_points_faza_B, *array_points_faza_C;
 }Inductor_model_data_s;

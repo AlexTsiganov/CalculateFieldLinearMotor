@@ -24,3 +24,17 @@ void print_Array_s(Array_s *array)
         printf("\n");
     }
 }
+
+void print_Array_s_Matrix_Jitems(Array_s *array)
+{
+    printf("Print Matrix J items: \n");
+    for (int i=0; i<array->length/2; i++)
+    {
+        for (int k=0; k<array->length/2; k++)
+        {
+            double *d = ((double*)array_get_by_index(array, i));
+            printf("  %.3f  ", *d);
+        }
+        printf("\n");
+    }
+}
