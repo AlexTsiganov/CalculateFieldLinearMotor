@@ -14,7 +14,6 @@
 #include "Calculate_J.h"
 
 void write_Inductor_model_to_data_files(Inductor_model_data_s *inductorModel);
-void write_calculate_J0_to_file(Calculate_J_result *j_result, char *filePath);
-void write_calculate_Matrix_AJ_to_file(double *A_matrix, int size, char *filePath);
+void write_calculate_inductor_J_to_file(Calculate_J_result *j_result, Inductor_model_data_s *inductorModel, char *filePath);
 
 #endif

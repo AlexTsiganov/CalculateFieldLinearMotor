@@ -9,7 +9,7 @@
 
 \begin{tikzpicture}
 
-\begin{axis}[ title=Inductor Model, xlabel={$x, mm$}, ylabel={$y, mm$},
+\begin{axis}[ title=Модель Индуктора, xlabel={$x, mm$}, ylabel={$y, mm$},
 height=0.35\paperheight,
 width=0.9\paperwidth,
 xmax=210,
@@ -25,7 +25,7 @@ black,
 mark size=0.08mm,
 %only marks,
 mark = *
-] table {/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/inductor_model.data};
+] table {/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/inductor_model.dat};
 
 \addplot[
 mark size=0.08mm,
@@ -36,7 +36,7 @@ point meta=explicit symbolic,
 scatter/classes={
 x={mark = x, mark size=0.3mm},
 o={mark = *, mark size=0.08mm}
-}] table [meta=class] {/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/Faza_A.data};
+}] table [meta=class] {/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/Faza_A.dat};
 
 \addplot[
 mark size=0.08mm,
@@ -47,7 +47,7 @@ point meta=explicit symbolic,
 scatter/classes={
 x={mark = x, mark size=0.3mm},
 o={mark = *, mark size=0.08mm}
-}] table [meta=class] {/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/Faza_B.data};
+}] table [meta=class] {/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/Faza_B.dat};
 
 \addplot[
 mark size=0.08mm,
@@ -58,7 +58,7 @@ point meta=explicit symbolic,
 scatter/classes={
 x={mark = x, mark size=0.3mm},
 o={mark = *, mark size=0.08mm}
-}] table [meta=class] {/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/Faza_C.data};
+}] table [meta=class] {/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/Faza_C.dat};
 
 \legend{ Индуктор,, Фаза А,, Фаза В,, Фаза С}
 

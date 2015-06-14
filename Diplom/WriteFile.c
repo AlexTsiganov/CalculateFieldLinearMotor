@@ -38,17 +38,19 @@ void write_Katushka_to_data_file(Model_katuska_point_s *points, int lenght, char
     fclose(f);
 }
 
-void write_calculate_J0_to_file(Calculate_J_result *j_result, char *filePath)
+void write_calculate_inductor_J_to_file(Calculate_J_result *j_result, Inductor_model_data_s *inductorModel, char *filePath)
 {
     FILE *f = fopen(filePath, "w");
     if (!f)
     return;
-    fprintf(f, "n\tx\ty\tz\n");
-    for (int i=0; i<j_result->inductorModel->inductor_size; i++)
+    fprintf(f, "n\tx\ty\tJ\tJ0\n");
+    for (int i=0; i<inductorModel->inductor_size; i++)
     {
-        Model_inductor_point_s model_point = j_result->inductorModel->inductor[i];
-        double j = j_result->J0_inductor[i];
-        fprintf(f, "%d\t%f\t%f\t%f\n",i , model_point.point->x, model_point.point->y, j);
+        Model_inductor_point_s model_point = inductorModel->inductor[i];
+        double j = j_result->J_inductor[j_result->total_count][i];
+        double j0 = j_result->J0_inductor[i];
+        j = j0+j0/2;
+        fprintf(f, "%d\t%f\t%f\t%f\t%f\n",i , model_point.point->x, model_point.point->y, j, j0);
     }
     fclose(f);
 }

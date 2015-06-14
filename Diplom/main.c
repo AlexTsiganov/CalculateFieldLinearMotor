@@ -12,20 +12,23 @@
 #include "Main_calculate.h"
 #include "Print.h"
 
+#include <stdlib.h>
 
-void create_models_data()
+Inductor_model_data_s *create_models_data(Inductor_model_data_params_s *model_params)
 {
-    Inductor_model_data_s *inductorModel = newModelInductor();
+    Inductor_model_data_s *inductorModel = newModelInductorData(model_params);
     print_Model_Inductor(inductorModel);
-    main_calcuate(inductorModel);
     write_Inductor_model_to_data_files(inductorModel);
+    return inductorModel;
 }
 
 int main(int argc, const char * argv[])
 {
-//#pragma omp parallel
-//   printf("Hello from thread %d, nthreads %d\n", omp_get_thread_num(), omp_get_num_threads());
-    create_models_data();
+    Inductor_model_data_params_s *model_params = malloc(sizeof(Inductor_model_data_params_s));
+    
+     Inductor_model_data_s *inductorModel = create_models_data(model_params);
+    Model_line_data_s *line_model = newModelLineData((Point_s){.x=0,.y=-10}, (Point_s){.x=inductorModel->params->width,.y=-10}, 1000);
+    main_calcuate(inductorModel, line_model);
     printf("Done\n");
     return 0;
 }

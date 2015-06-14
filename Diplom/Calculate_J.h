@@ -10,11 +10,11 @@
 #define __Diplom__Calculate_J__
 
 #include "Inductor_model_data.h"
+#include <complex.h>
 
 typedef struct
 {
-    Inductor_model_data_s *inductorModel;
-    int count;
+    int total_count;
     double error;
     double *J0_inductor, **J_inductor, *A_matrix;
 }Calculate_J_result;

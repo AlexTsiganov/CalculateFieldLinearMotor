@@ -12,6 +12,12 @@
 #include "Model_point.h"
 #include "Default_model_params.h"
 
+#define Katushka_faza_count 3
+typedef enum
+{
+    Faza_A, Faza_B, Faza_C
+}Faza;
+
 typedef struct
 {
     double width, height, prong_width, groove_width, groove_height;
@@ -21,13 +27,9 @@ typedef struct
     double katushka_zazor, katushka_height;
     int dKatushka_width_count, dKatushka_height_count;
     
+    double I_katushki;
 }Inductor_model_data_params_s;
 
-#define Katushka_faza_count 3
-typedef enum
-{
-    Faza_A, Faza_B, Faza_C
-}Faza;
 
 typedef struct Model_inductor_data_s
 {
@@ -38,17 +40,14 @@ typedef struct Model_inductor_data_s
     int katushka_size;
 }Inductor_model_data_s;
 
+typedef struct Model_line_data_s
+{
+    Point_s *points;
+    int count;
+}Model_line_data_s;
 
-#define newModelInductor(...) newModelInductorData_base((Inductor_model_data_params_s)\
-{\
-/*.width = -1, \
-.height = -1, \
-.prong_width = -1, \
-.groove_width = -1, \
-.groove_height = -1,*/ \
-__VA_ARGS__\
-})
+Inductor_model_data_s* newModelInductorData(Inductor_model_data_params_s *model_params);
 
-Inductor_model_data_s* newModelInductorData_base(Inductor_model_data_params_s model_params);
+Model_line_data_s* newModelLineData(Point_s startPoint, Point_s endPoint, double count);
 
 #endif

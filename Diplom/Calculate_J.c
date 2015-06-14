@@ -366,17 +366,15 @@ Calculate_J_result* calulate_J_inductor(Calculate_J_params calculate_J_params)
         //(int index, double *J_inductor, double errorMax, double errorMin, Inductor_model_data_s *inductorModel
         calculate_J_params.on_calculate_J(sh, j[sh], 0,0,calculate_J_params.inductorModel);
         sh++;
-        if (sh == 6)
+        if (sh == 4)
         {
             break;
         }
     } // J(92.531; 0.000) -> 974.130
-    
-    result->inductorModel = calculate_J_params.inductorModel;
+    result->total_count = sh-1;
     result->A_matrix = matrix_A;
+    result->J_inductor = j;
     result->J0_inductor = j0;
-    write_calculate_J0_to_file(result, PATH_RESULT_INDUCTOR_B0_DATA);
-    write_calculate_Matrix_AJ_to_file(result->A_matrix, pow(calculate_J_params.inductorModel->inductor_size,2), PATH_RESULT_MATRIX_AJ_DATA);
     printf("End calulate_J_inductor\n");
     return result;
 }

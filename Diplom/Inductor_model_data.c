@@ -9,7 +9,7 @@
 #include "Inductor_model_data.h"
 #include <stdlib.h>
 #include <math.h>
-
+#include <complex.h>
 
 Inductor_model_data_s *initInductorModelData(Inductor_model_data_params_s model_params)
 {
@@ -68,7 +68,7 @@ void points_katushka(Model_katuska_point_s *points, Point_s *startPoint, double 
             {
                 printf("");
             }
-            points[*sh] = (Model_katuska_point_s){ .I_vitka=(value==0)?1000:-1000,
+            points[*sh] = (Model_katuska_point_s){ .I_vitka=(value==0)?1:-1,
                                                                 .drift = (value==0)?o:x,
                                                                 .dWidth=dKatushka_width,
                                                                 .dHeight=dKatushka_height,
@@ -153,23 +153,23 @@ void points_katushki_in_faza(Model_katuska_point_s *array_points_faza, Inductor_
     inductor_model->katushka_size = sh;
 }
 
-Inductor_model_data_s* newModelInductorData_base(Inductor_model_data_params_s model_params)
+Inductor_model_data_s* newModelInductorData(Inductor_model_data_params_s *model_params)
 {
-    validateModelInductorDataParams(&model_params);
-    Inductor_model_data_s *inductor_model = initInductorModelData(model_params);
-    if (!validateModelInductorDataParams(&model_params))
+    validateModelInductorDataParams(model_params);
+    Inductor_model_data_s *inductor_model = initInductorModelData(*model_params);
+    if (!validateModelInductorDataParams(model_params))
         return inductor_model;
     double x0 = 0, y0 = 0;
     
-    double dProng_Width = model_params.prong_width/model_params.prong_dWidth_count;
-    double dGroove_Height = model_params.groove_height/model_params.groove_dHeight_count;
-    double dGroove_Width = model_params.groove_width/model_params.groove_dWidth_count;
-    double dInductor_Width = model_params.width/model_params.dWidth_count;
-    double dInductor_Height = model_params.height/model_params.dHeight_count;
+    double dProng_Width = model_params->prong_width/model_params->prong_dWidth_count;
+    double dGroove_Height = model_params->groove_height/model_params->groove_dHeight_count;
+    double dGroove_Width = model_params->groove_width/model_params->groove_dWidth_count;
+    double dInductor_Width = model_params->width/model_params->dWidth_count;
+    double dInductor_Height = model_params->height/model_params->dHeight_count;
     
     int _test_sh = 0;
     
-    for (int i=0; i<model_params.prong_dWidth_count; i++, _test_sh++)
+    for (int i=0; i<model_params->prong_dWidth_count; i++, _test_sh++)
     {
         inductor_model->inductor[i] = (Model_inductor_point_s){ .point = newPoint(.x=x0+(2*i+1)*dProng_Width/2, .y=y0),
                                                                 .normal_vector = newPoint(.x=0, .y=-1),
@@ -184,12 +184,12 @@ Inductor_model_data_s* newModelInductorData_base(Inductor_model_data_params_s mo
     }
     Point_s *dPoint = newPoint();
 
-    for (int j=0; j<model_params.groove_count; j++)
+    for (int j=0; j<model_params->groove_count; j++)
     {
-        dPoint->x = x0+model_params.groove_width*(j)+model_params.prong_width*(j+1);
+        dPoint->x = x0+model_params->groove_width*(j)+model_params->prong_width*(j+1);
         dPoint->y = y0;
         
-        for (int i=0; i<model_params.groove_dHeight_count; i++, _test_sh++)
+        for (int i=0; i<model_params->groove_dHeight_count; i++, _test_sh++)
             inductor_model->inductor[_test_sh] = (Model_inductor_point_s){
                 .point = newPoint(.x=dPoint->x, .y=dPoint->y+(2*i+1)*dGroove_Height/2),
                 .normal_vector = newPoint(.x=1, .y=0),
@@ -200,36 +200,30 @@ Inductor_model_data_s* newModelInductorData_base(Inductor_model_data_params_s mo
                                                                         .size=dGroove_Height,
                                                                         .tan_vector=newPoint(.x=0,.y=1))); // |* */
         
-        dPoint->y += model_params.groove_height;
+        dPoint->y += model_params->groove_height;
 
-        for (int i=0; i<model_params.groove_dWidth_count; i++, _test_sh++)
+        for (int i=0; i<model_params->groove_dWidth_count; i++, _test_sh++)
             inductor_model->inductor[_test_sh] = (Model_inductor_point_s){
                 .point = newPoint(.x=dPoint->x+(2*i+1)*dGroove_Width/2, .y=dPoint->y),
                 .normal_vector = newPoint(.x=0, .y=-1),
                 .dSize = dGroove_Width,
                 .tan_vector = newPoint(.x=1, .y=0) };
-            /*array_add(inductor_model->array_model_points, newModelPoint(.point=newPoint(.x=dPoint->x+(2*i+1)*dGroove_Width/2, .y=dPoint->y),
-                                                                        .normal_vector=newPoint(.x=0, .y=-1),
-                                                                        .size=dGroove_Width,
-                                                                        .tan_vector=newPoint(.x=1, .y=0)));*/ //  -
+
         
-        dPoint->x += model_params.groove_width;
+        dPoint->x += model_params->groove_width;
         
 
-        for (int i=0; i<model_params.groove_dHeight_count; i++, _test_sh++)
+        for (int i=0; i<model_params->groove_dHeight_count; i++, _test_sh++)
             inductor_model->inductor[_test_sh] = (Model_inductor_point_s){
                 .point = newPoint(.x=dPoint->x, .y=dPoint->y-(2*i+1)*dGroove_Height/2),
                 .normal_vector = newPoint(.x=-1, .y=0),
                 .dSize = dGroove_Height,
                 .tan_vector = newPoint(.x=0, .y=-1) };
-            /*array_add(inductor_model->array_model_points, newModelPoint(.point=newPoint(.x=dPoint->x, .y=dPoint->y-(2*i+1)*dGroove_Height/2),
-                                                                        .normal_vector=newPoint(.x=-1, .y=0),
-                                                                        .size=dGroove_Height,
-                                                                        .tan_vector=newPoint(.x=0, .y=-1)));*/ //  *|
+
         
-        dPoint->y -= model_params.groove_height;
+        dPoint->y -= model_params->groove_height;
         
-        for (int i=0; i<model_params.prong_dWidth_count; i++, _test_sh++)
+        for (int i=0; i<model_params->prong_dWidth_count; i++, _test_sh++)
         {
             inductor_model->inductor[_test_sh] = (Model_inductor_point_s){
                 .point = newPoint(.x=dPoint->x+(2*i+1)*dProng_Width/2, .y=dPoint->y),
@@ -243,14 +237,10 @@ Inductor_model_data_s* newModelInductorData_base(Inductor_model_data_params_s mo
                                                                         .tan_vector=newPoint(.x=1, .y=0)));*/ //  _
     }
     
-    dPoint->x += model_params.prong_width;
+    dPoint->x += model_params->prong_width;
 
-    int tt = model_params.groove_count*( 2*model_params.groove_dHeight_count+
-                                        model_params.groove_dWidth_count+
-                                        model_params.prong_dWidth_count)+
-    model_params.prong_dWidth_count;
     
-    for (int i=0; i<model_params.dHeight_count; i++, _test_sh++)
+    for (int i=0; i<model_params->dHeight_count; i++, _test_sh++)
         inductor_model->inductor[_test_sh] = (Model_inductor_point_s){
             .point = newPoint(.x=dPoint->x, .y=dPoint->y+(2*i+1)*dInductor_Height/2),
             .normal_vector = newPoint(.x=1, .y=0),
@@ -261,9 +251,9 @@ Inductor_model_data_s* newModelInductorData_base(Inductor_model_data_params_s mo
                                                                     .size=dInductor_Height,
                                                                     .tan_vector=newPoint(.x=0, .y=1)));*/
     
-    dPoint->y += model_params.height;
+    dPoint->y += model_params->height;
 
-    for (int i=0; i<model_params.dWidth_count; i++, _test_sh++)
+    for (int i=0; i<model_params->dWidth_count; i++, _test_sh++)
         inductor_model->inductor[_test_sh] = (Model_inductor_point_s){
             .point = newPoint(dPoint->x-(2*i+1)*dInductor_Width/2, dPoint->y),
             .normal_vector = newPoint(.x=0, .y=1),
@@ -274,14 +264,9 @@ Inductor_model_data_s* newModelInductorData_base(Inductor_model_data_params_s mo
                                                                     .size=dInductor_Width,
                                                                     .tan_vector=newPoint(.x=-1, .y=0)));*/
     
-    dPoint->x -= model_params.width;
-    int tt1 = +model_params.groove_count*( 2*model_params.groove_dHeight_count+
-                                         model_params.groove_dWidth_count+
-                                         model_params.prong_dWidth_count)+
-    model_params.prong_dWidth_count+
-    model_params.dHeight_count+
-    model_params.dWidth_count;
-    for (int i=0; i<model_params.dHeight_count; i++, _test_sh++)
+    dPoint->x -= model_params->width;
+
+    for (int i=0; i<model_params->dHeight_count; i++, _test_sh++)
         inductor_model->inductor[_test_sh] = (Model_inductor_point_s){
             .point = newPoint(.x=dPoint->x, .y=dPoint->y-(2*i+1)*dInductor_Height/2),
             .normal_vector = newPoint(.x=-1, .y=0),
@@ -294,21 +279,37 @@ Inductor_model_data_s* newModelInductorData_base(Inductor_model_data_params_s mo
     
     freePoint(dPoint);
     // Faza A
-    dPoint = newPoint(.x=x0+model_params.prong_width+model_params.katushka_zazor,
-                      .y=y0+model_params.groove_height-model_params.katushka_zazor);
+    dPoint = newPoint(.x=x0+model_params->prong_width+model_params->katushka_zazor,
+                      .y=y0+model_params->groove_height-model_params->katushka_zazor);
     
-    points_katushki_in_faza(inductor_model->katushka[Faza_A], inductor_model, dPoint, model_params);
+    points_katushki_in_faza(inductor_model->katushka[Faza_A], inductor_model, dPoint, *model_params);
     
     // Faza C
-    dPoint->x += 3*model_params.prong_width+3*model_params.groove_width;
-    points_katushki_in_faza(inductor_model->katushka[Faza_C], inductor_model, dPoint, model_params);
+    dPoint->x += 3*model_params->prong_width+3*model_params->groove_width;
+    points_katushki_in_faza(inductor_model->katushka[Faza_C], inductor_model, dPoint, *model_params);
     
     // Faza B
-    dPoint->x += 3*model_params.prong_width+3*model_params.groove_width;
-    points_katushki_in_faza(inductor_model->katushka[Faza_B], inductor_model, dPoint, model_params);
+    dPoint->x += 3*model_params->prong_width+3*model_params->groove_width;
+    points_katushki_in_faza(inductor_model->katushka[Faza_B], inductor_model, dPoint, *model_params);
     
     freePoint(dPoint);
     
-    inductor_model->params = &model_params;
+    inductor_model->params = model_params;
     return inductor_model;
+}
+
+
+Model_line_data_s* newModelLineData(Point_s startPoint, Point_s endPoint, double count)
+{
+    Model_line_data_s *lineModel = malloc(sizeof(Model_line_data_s));
+    Point_s *points = malloc(sizeof(Point_s)*count);
+    double dL = (endPoint.x - startPoint.x)/count;
+    for (int i=0; i<count; i++)
+    {
+        points[i] = (Point_s){.x=startPoint.x+dL/2, .y=startPoint.y};
+        startPoint.x+=dL;
+    }
+    lineModel->points = points;
+    lineModel->count = count;
+    return lineModel;
 }

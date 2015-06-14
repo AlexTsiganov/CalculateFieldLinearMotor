@@ -19,10 +19,10 @@
 		CEE2BE1C1ADE620F0036B93A /* Graph_builder.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BE1A1ADE620F0036B93A /* Graph_builder.c */; };
 		CEE2BE1F1ADE627C0036B93A /* Inductor_model_data.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BE1D1ADE627C0036B93A /* Inductor_model_data.c */; };
 		CEE2BE221ADE64ED0036B93A /* Model_point.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BE201ADE64ED0036B93A /* Model_point.c */; };
-		CEE2BE261ADE72A30036B93A /* Calculate_base.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BE241ADE72A30036B93A /* Calculate_base.c */; };
 		CEE2BE2A1ADFA5750036B93A /* Intergals.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BE281ADFA5750036B93A /* Intergals.c */; };
-		CEE2BE2D1ADFA5E90036B93A /* Calculate_B0.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BE2B1ADFA5E90036B93A /* Calculate_B0.c */; };
+		CEE2BE2D1ADFA5E90036B93A /* Calculate_B.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BE2B1ADFA5E90036B93A /* Calculate_B.c */; };
 		CEF31B8B1B2C361000B964D3 /* LatexPDF_builder.c in Sources */ = {isa = PBXBuildFile; fileRef = CEF31B891B2C361000B964D3 /* LatexPDF_builder.c */; };
+		CEF31B901B2D9B1000B964D3 /* test.text in Sources */ = {isa = PBXBuildFile; fileRef = CEF31B8F1B2D9B1000B964D3 /* test.text */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,14 +45,10 @@
 		CE435D861AD39AE50082B8E8 /* Draw_Inductor_Model.tex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Draw_Inductor_Model.tex; sourceTree = "<group>"; };
 		CE435D871AD39D5C0082B8E8 /* Model_data.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Model_data.c; sourceTree = "<group>"; };
 		CE435D881AD39D5C0082B8E8 /* Model_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model_data.h; sourceTree = "<group>"; };
-		CE435D8C1AD3A2380082B8E8 /* inductor_model.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = inductor_model.data; sourceTree = "<group>"; };
 		CE8524671B26C523004CAD55 /* Calculate_J.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Calculate_J.c; sourceTree = "<group>"; };
 		CE8524681B26C523004CAD55 /* Calculate_J.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calculate_J.h; sourceTree = "<group>"; };
-		CEDC7CC91B2832510021E7E4 /* Calculate_Matrix_J0.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Calculate_Matrix_J0.data; sourceTree = "<group>"; };
 		CEDC7CCA1B28353F0021E7E4 /* Main_calculate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Main_calculate.c; sourceTree = "<group>"; };
 		CEDC7CDF1B2B23BB0021E7E4 /* test */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test; sourceTree = "<group>"; };
-		CEE071681AE64C5C00BAEE04 /* Faza_B.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Faza_B.data; sourceTree = "<group>"; };
-		CEE071691AE64C5C00BAEE04 /* Faza_C.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Faza_C.data; sourceTree = "<group>"; };
 		CEE0716E1AE655D200BAEE04 /* Inductor_model.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Inductor_model.pdf; sourceTree = "<group>"; };
 		CEE0716F1AE7864E00BAEE04 /* Math_fuctions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Math_fuctions.c; sourceTree = "<group>"; };
 		CEE071701AE7864E00BAEE04 /* Math_fuctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Math_fuctions.h; sourceTree = "<group>"; };
@@ -60,7 +56,6 @@
 		CEE071731AE7A01300BAEE04 /* WriteFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteFile.h; sourceTree = "<group>"; };
 		CEE071751AE7A1D800BAEE04 /* Print.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Print.c; sourceTree = "<group>"; };
 		CEE071761AE7A1D800BAEE04 /* Print.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Print.h; sourceTree = "<group>"; };
-		CEE0717A1AE7C68D00BAEE04 /* Calculate_Inductor_B0.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Calculate_Inductor_B0.data; sourceTree = "<group>"; };
 		CEE0717B1AE7C72600BAEE04 /* Draw_Inductor_B0.tex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Draw_Inductor_B0.tex; sourceTree = "<group>"; };
 		CEE0717C1AE7C7CA00BAEE04 /* Build_PDF_Inductor_B0.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = Build_PDF_Inductor_B0.sh; sourceTree = "<group>"; };
 		CEE0717D1AE7C9B300BAEE04 /* Inductor_B0.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Inductor_B0.pdf; sourceTree = "<group>"; };
@@ -74,20 +69,23 @@
 		CEE2BE1E1ADE627C0036B93A /* Inductor_model_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inductor_model_data.h; sourceTree = "<group>"; };
 		CEE2BE201ADE64ED0036B93A /* Model_point.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Model_point.c; sourceTree = "<group>"; };
 		CEE2BE211ADE64ED0036B93A /* Model_point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model_point.h; sourceTree = "<group>"; };
-		CEE2BE241ADE72A30036B93A /* Calculate_base.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Calculate_base.c; sourceTree = "<group>"; };
-		CEE2BE251ADE72A30036B93A /* Calculate_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calculate_base.h; sourceTree = "<group>"; };
 		CEE2BE281ADFA5750036B93A /* Intergals.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Intergals.c; sourceTree = "<group>"; };
 		CEE2BE291ADFA5750036B93A /* Intergals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Intergals.h; sourceTree = "<group>"; };
-		CEE2BE2B1ADFA5E90036B93A /* Calculate_B0.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Calculate_B0.c; sourceTree = "<group>"; };
-		CEE2BE2C1ADFA5E90036B93A /* Calculate_B0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calculate_B0.h; sourceTree = "<group>"; };
+		CEE2BE2B1ADFA5E90036B93A /* Calculate_B.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Calculate_B.c; sourceTree = "<group>"; };
+		CEE2BE2C1ADFA5E90036B93A /* Calculate_B.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calculate_B.h; sourceTree = "<group>"; };
 		CEE2BE2E1ADFA69A0036B93A /* Main_calculate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Main_calculate.h; sourceTree = "<group>"; };
-		CEE2BE2F1ADFB1010036B93A /* Faza_A.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Faza_A.data; sourceTree = "<group>"; };
 		CEE2BE301ADFE6540036B93A /* Build_PDF_Inductor_model.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = Build_PDF_Inductor_model.sh; sourceTree = "<group>"; };
 		CEF31B891B2C361000B964D3 /* LatexPDF_builder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LatexPDF_builder.c; sourceTree = "<group>"; };
 		CEF31B8A1B2C361000B964D3 /* LatexPDF_builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LatexPDF_builder.h; sourceTree = "<group>"; };
 		CEF31B8C1B2C621900B964D3 /* Draw_Inductor_J.tex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Draw_Inductor_J.tex; sourceTree = "<group>"; };
 		CEF31B8D1B2C655E00B964D3 /* Build_PDF_Inductor_J */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Build_PDF_Inductor_J; sourceTree = "<group>"; };
-		CEF31B8E1B2D899800B964D3 /* Draw_Inductor_J.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Draw_Inductor_J.pdf; sourceTree = "<group>"; };
+		CEF31B8F1B2D9B1000B964D3 /* test.text */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = test.text; sourceTree = "<group>"; };
+		CEF31B911B2DAB9F00B964D3 /* Inductor_J.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Inductor_J.pdf; sourceTree = "<group>"; };
+		CEF31B921B2DAFA600B964D3 /* Calculate_Inductor_J.dat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Calculate_Inductor_J.dat; sourceTree = "<group>"; };
+		CEF31B931B2DAFA600B964D3 /* Faza_A.dat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Faza_A.dat; sourceTree = "<group>"; };
+		CEF31B941B2DAFA600B964D3 /* Faza_B.dat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Faza_B.dat; sourceTree = "<group>"; };
+		CEF31B951B2DAFA600B964D3 /* Faza_C.dat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Faza_C.dat; sourceTree = "<group>"; };
+		CEF31B961B2DAFA600B964D3 /* inductor_model.dat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = inductor_model.dat; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +169,7 @@
 				CEE0717B1AE7C72600BAEE04 /* Draw_Inductor_B0.tex */,
 				CE435D861AD39AE50082B8E8 /* Draw_Inductor_Model.tex */,
 				CEF31B8C1B2C621900B964D3 /* Draw_Inductor_J.tex */,
+				CEF31B8F1B2D9B1000B964D3 /* test.text */,
 			);
 			path = Latex;
 			sourceTree = "<group>";
@@ -178,12 +177,11 @@
 		CE435D8B1AD3A2380082B8E8 /* Data files */ = {
 			isa = PBXGroup;
 			children = (
-				CEDC7CC91B2832510021E7E4 /* Calculate_Matrix_J0.data */,
-				CEE0717A1AE7C68D00BAEE04 /* Calculate_Inductor_B0.data */,
-				CEE071681AE64C5C00BAEE04 /* Faza_B.data */,
-				CEE071691AE64C5C00BAEE04 /* Faza_C.data */,
-				CEE2BE2F1ADFB1010036B93A /* Faza_A.data */,
-				CE435D8C1AD3A2380082B8E8 /* inductor_model.data */,
+				CEF31B921B2DAFA600B964D3 /* Calculate_Inductor_J.dat */,
+				CEF31B931B2DAFA600B964D3 /* Faza_A.dat */,
+				CEF31B941B2DAFA600B964D3 /* Faza_B.dat */,
+				CEF31B951B2DAFA600B964D3 /* Faza_C.dat */,
+				CEF31B961B2DAFA600B964D3 /* inductor_model.dat */,
 				CEDC7CDF1B2B23BB0021E7E4 /* test */,
 			);
 			path = "Data files";
@@ -202,9 +200,9 @@
 		CEE0716D1AE655D200BAEE04 /* Pdf */ = {
 			isa = PBXGroup;
 			children = (
-				CEF31B8E1B2D899800B964D3 /* Draw_Inductor_J.pdf */,
-				CEE0717D1AE7C9B300BAEE04 /* Inductor_B0.pdf */,
 				CEE0716E1AE655D200BAEE04 /* Inductor_model.pdf */,
+				CEF31B911B2DAB9F00B964D3 /* Inductor_J.pdf */,
+				CEE0717D1AE7C9B300BAEE04 /* Inductor_B0.pdf */,
 			);
 			path = Pdf;
 			sourceTree = "<group>";
@@ -223,16 +221,14 @@
 			children = (
 				CEE2BE2E1ADFA69A0036B93A /* Main_calculate.h */,
 				CEDC7CCA1B28353F0021E7E4 /* Main_calculate.c */,
-				CEE2BE251ADE72A30036B93A /* Calculate_base.h */,
-				CEE2BE241ADE72A30036B93A /* Calculate_base.c */,
 				CEE2BE291ADFA5750036B93A /* Intergals.h */,
 				CEE2BE281ADFA5750036B93A /* Intergals.c */,
-				CEE2BE2C1ADFA5E90036B93A /* Calculate_B0.h */,
-				CEE2BE2B1ADFA5E90036B93A /* Calculate_B0.c */,
 				CEE071701AE7864E00BAEE04 /* Math_fuctions.h */,
 				CEE0716F1AE7864E00BAEE04 /* Math_fuctions.c */,
 				CE8524681B26C523004CAD55 /* Calculate_J.h */,
 				CE8524671B26C523004CAD55 /* Calculate_J.c */,
+				CEE2BE2C1ADFA5E90036B93A /* Calculate_B.h */,
+				CEE2BE2B1ADFA5E90036B93A /* Calculate_B.c */,
 			);
 			name = Calculate;
 			sourceTree = "<group>";
@@ -315,15 +311,15 @@
 				CEDC7CCB1B28353F0021E7E4 /* Main_calculate.c in Sources */,
 				8406FE7E1AB85C2600D1D872 /* main.c in Sources */,
 				CEE071711AE7864E00BAEE04 /* Math_fuctions.c in Sources */,
-				CEE2BE261ADE72A30036B93A /* Calculate_base.c in Sources */,
 				CEE2BE1F1ADE627C0036B93A /* Inductor_model_data.c in Sources */,
 				CE435D821AC41B560082B8E8 /* Data_s.c in Sources */,
 				CEE071771AE7A1D800BAEE04 /* Print.c in Sources */,
 				CEE2BE221ADE64ED0036B93A /* Model_point.c in Sources */,
 				CEE071741AE7A01300BAEE04 /* WriteFile.c in Sources */,
 				CE435D891AD39D5C0082B8E8 /* Model_data.c in Sources */,
+				CEF31B901B2D9B1000B964D3 /* test.text in Sources */,
 				CEE2BE1C1ADE620F0036B93A /* Graph_builder.c in Sources */,
-				CEE2BE2D1ADFA5E90036B93A /* Calculate_B0.c in Sources */,
+				CEE2BE2D1ADFA5E90036B93A /* Calculate_B.c in Sources */,
 				CEE2BE171ADC4D7F0036B93A /* Array_s.c in Sources */,
 				CE8524691B26C523004CAD55 /* Calculate_J.c in Sources */,
 			);

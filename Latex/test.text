@@ -1,0 +1,98 @@
+\documentclass[10pt]{article}
+\usepackage{pgfplots}
+\usepgfplotslibrary{patchplots}
+\usepackage{comment}
+\usepackage{pgffor}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[letterpaper, total={130mm,297mm}, landscape,left=2mm, right=2mm, top=2mm, bottom=2mm]{geometry}
+\pgfplotsset{compat=1.9}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tikzpicture}
+\begin{axis}[
+view={110}{10},
+surf,
+z buffer=sort,
+colormap/jet,
+shader=flat,
+draw=black]
+\addplot3[surf] coordinates{ (0,0,0) (0,10,0) (10,0,0) (10,10,10)};
+\end{axis}
+\end{tikzpicture}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tikzpicture}
+\begin{axis}[
+view={110}{10},
+colormap/greenyellow,
+colorbar
+]
+\addplot3[surf] { x^2 + y^2 };
+\end{axis}
+\end{tikzpicture}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tikzpicture}
+
+\begin{axis}[%
+view={64}{26},
+width=6cm,
+height=6cm,
+scale only axis,
+xmin=0, xmax=11,
+xmajorgrids,
+ymin=0, ymax=11,
+ymajorgrids,
+zmin=-10, zmax=10,
+zmajorgrids,
+axis lines=left,
+grid=major]
+
+\addplot3[
+surf,
+%z buffer=sort,
+colormap/jet,
+shader=flat,
+draw=black,
+]
+coordinates{
+(0,0,0)(0,10,0)
+
+(10,0,0)(10,10,0)
+
+};
+
+\addplot3[
+surf,
+%z buffer=sort,
+colormap/jet,
+shader=flat,
+draw=black,
+]
+coordinates{
+(0,0,0)(0,0,5)
+
+(0,1,0)(0,1,2)
+
+(0,5,0)(0,5,3)
+
+(0,5.5,0)(0,5.5,3.5)
+
+(0,6,0)(0,6,1)
+
+(0,7,0)(0,7,-1)
+
+(0,9,0)(0,9,-2)
+};
+
+\end{axis}
+\end{tikzpicture}
+
+
+\end{document}
