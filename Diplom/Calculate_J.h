@@ -13,18 +13,19 @@
 
 typedef struct
 {
-    double *J0_inductor, *J_inductor;
-    int total_index;
-    void (*on_calculate_J)(int index, double *J_inductor, double errorMax, double errorMin);
+    Inductor_model_data_s *inductorModel;
+    int count;
+    double error;
+    double *J0_inductor, **J_inductor, *A_matrix;
 }Calculate_J_result;
 
 typedef struct
 {
     Inductor_model_data_s *inductorModel;
     double error; // 0-1;
+    void (*on_calculate_J)(int index, double *J_inductor, double errorMax, double errorMin, Inductor_model_data_s *inductorModel);
 }Calculate_J_params;
 
-Array_s* calulate_matrix_AJ(Inductor_model_data_s *inductorModel);
-Calculate_J_result* calulate_J_inductor(Inductor_model_data_s *inductorModel);
+Calculate_J_result* calulate_J_inductor(Calculate_J_params calculate_J_params);
 
 #endif

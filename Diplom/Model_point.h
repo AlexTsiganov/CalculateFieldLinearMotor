@@ -34,10 +34,12 @@ typedef struct
     Point_s *point, *tan_vector, *normal_vector;
 }Model_inductor_point_s;
 
+typedef enum {o, x}Drift_e;
+
 typedef struct
 {
-    enum {o, x} drift;
-    double dWidth, dHeight, I;
+    Drift_e drift;
+    double dWidth, dHeight, I_vitka;
     Point_s *point;
 }Model_katuska_point_s;
 
@@ -71,14 +73,14 @@ Model_point_katuski_s* newModelPointKatuski_base(Model_point_katuski_s modelPoin
 
 
 int isPointEquals(Point_s* p1, Point_s *p2);
-int isTan_x(Model_point_s *modelPoint);
-int isTan_y(Model_point_s *modelPoint);
-double get_x(Model_point_s *modelPoint);
-double get_y(Model_point_s *modelPoint);
-double get_Size(Model_point_s *modelPoint);
-double get_tan_x(Model_point_s *modelPoint);
-double get_tan_y(Model_point_s *modelPoint);
-double get_nor_x(Model_point_s *modelPoint);
-double get_nor_y(Model_point_s *modelPoint);
+//int isTan_x(Model_point_s *modelPoint);
+//int isTan_y(Model_point_s *modelPoint);
+//double get_x(Model_point_s *modelPoint);
+//double get_y(Model_point_s *modelPoint);
+//double get_Size(Model_point_s *modelPoint);
+//double get_tan_x(Model_point_s *modelPoint);
+//double get_tan_y(Model_point_s *modelPoint);
+//double get_nor_x(Model_point_s *modelPoint);
+//double get_nor_y(Model_point_s *modelPoint);
 
 #endif

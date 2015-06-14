@@ -26,7 +26,7 @@ int isPointEquals(Point_s* p1, Point_s *p2)
     return p1->x == p2->x && p1->y && p2->y;
 }
 
-int isTan_x(Model_point_s *modelPoint)
+/*int isTan_x(Model_point_s *modelPoint)
 {
     return modelPoint->tan_vector->x == 0;
 }
@@ -93,7 +93,7 @@ Model_point_s* newModelPoint_base(Model_point_s modelPointArgs)
     model_point->tan_vector = modelPointArgs.tan_vector;
     model_point->normal_vector = modelPointArgs.normal_vector;
     return model_point;
-}
+}*/
 
 /*Model_point_B_s* newModelPointB_base(Model_point_B_s modelPointBArgs)
 {

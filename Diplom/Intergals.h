@@ -9,6 +9,6 @@
 #ifndef __Diplom__Intergals__
 #define __Diplom__Intergals__
 
-double int_Bt(double x1, double x2, double x3, double x4, double x5, double x6);
+
 
 #endif

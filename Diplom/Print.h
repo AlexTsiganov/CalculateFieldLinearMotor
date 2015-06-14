@@ -10,9 +10,9 @@
 #define __Diplom__Print__
 
 #include <stdio.h>
-#include "Array_s.h"
+#include "Inductor_model_data.h"
 
-void print_Array_s(Array_s *array);
-void print_Array_s_Matrix_Jitems(Array_s *array);
+void print_Model_Inductor(Inductor_model_data_s *inductor_model);
+void print_Array_s_Matrix_Jitems(double *A_matrix, int size);
 
 #endif

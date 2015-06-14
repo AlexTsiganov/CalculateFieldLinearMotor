@@ -12,4 +12,6 @@
 #include "Calculate_B0.h"
 #include "Calculate_J.h"
 
+void main_calcuate(Inductor_model_data_s *inductor_model);
+
 #endif

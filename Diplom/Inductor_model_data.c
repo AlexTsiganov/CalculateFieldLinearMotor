@@ -9,40 +9,37 @@
 #include "Inductor_model_data.h"
 #include <stdlib.h>
 #include <math.h>
-#include "Config.h"
 
-//#include <omp.h>
 
-static Inductor_model_data_s *initInductorModelData()
+Inductor_model_data_s *initInductorModelData(Inductor_model_data_params_s model_params)
 {
     Inductor_model_data_s *newModelParams = malloc(sizeof(Inductor_model_data_s));
-    *newModelParams = (Inductor_model_data_s){.array_model_points = array_new(0),
-                                              .array_points_faza_A = array_new(0),
-                                              .array_points_faza_B = array_new(0),
-                                              .array_points_faza_C = array_new(0)};
+    int inductor_size = model_params.dWidth_count + 2*model_params.dHeight_count+
+                        model_params.groove_count * ( 2*model_params.groove_dHeight_count +
+                                                      model_params.groove_dWidth_count +
+                                                      model_params.prong_dWidth_count)+
+                        model_params.prong_dWidth_count,
+        katushka_size = model_params.dKatushka_height_count*model_params.dKatushka_width_count*12;
+    
+    *newModelParams = (Inductor_model_data_s){ .inductor = malloc(sizeof(Model_inductor_point_s)*inductor_size),
+                                               .params = &model_params,
+                                               .inductor_size = inductor_size,
+                                               .katushka[Faza_A] = malloc(sizeof(Model_katuska_point_s)*katushka_size),
+                                               .katushka[Faza_B] = malloc(sizeof(Model_katuska_point_s)*katushka_size),
+                                               .katushka[Faza_C] = malloc(sizeof(Model_katuska_point_s)*katushka_size),
+                                               .katushka_size = katushka_size};
     return newModelParams;
 }
 
 int validateModelInductorDataParams(Inductor_model_data_params_s *model_params)
 {
     int result = 1;
-    model_params->dWidth_count = 100;
-    model_params->dHeight_count = 30;
-    model_params->prong_dWidth_count = 6;
-    model_params->groove_dHeight_count = 28;
-    model_params->groove_dWidth_count = 5;
     
-    model_params->dWidth_count = 100;
+    model_params->dWidth_count = 140;
     model_params->dHeight_count = 50;
-    model_params->prong_dWidth_count = 20;
-    model_params->groove_dHeight_count = 45;
-    model_params->groove_dWidth_count = 20;
-    
-    model_params->dWidth_count = 50;
-    model_params->dHeight_count = 27;
-    model_params->prong_dWidth_count = 10;
-    model_params->groove_dHeight_count = 15;
-    model_params->groove_dWidth_count = 5;
+    model_params->prong_dWidth_count = 8;
+    model_params->groove_dHeight_count = 40;
+    model_params->groove_dWidth_count = 8;
 
     model_params->groove_count = 20;
 
@@ -54,32 +51,42 @@ int validateModelInductorDataParams(Inductor_model_data_params_s *model_params)
     
     model_params->katushka_zazor = 0.5;
     model_params->katushka_height = cDefault_data_inducor_katushka_height;
-    model_params->dKatushka_width_count = 1;
-    model_params->dKatushka_height_count = 1;
+    model_params->dKatushka_width_count = 5;
+    model_params->dKatushka_height_count = 14;
     return result;
 }
 
-void points_katushka(Array_s *array, Point_s *startPoint, double width, double height, double dWidth_count, double dHeight_count, double value)
+void points_katushka(Model_katuska_point_s *points, Point_s *startPoint, double width, double height, int dWidth_count, int dHeight_count, double value, int *sh)
 {
     double dKatushka_width = width/dWidth_count;
     double dKatushka_height = height/dHeight_count;
     for (int i=0; i<dWidth_count; i++)
     {
-        for (int j=0; j<dHeight_count; j++)
+        for (int j=0; j<dHeight_count; j++, (*sh)++)
         {
-            array_add(array, newModelPoint(.value=(value==0)?1000:-1000,
+            if (*sh == 499)
+            {
+                printf("");
+            }
+            points[*sh] = (Model_katuska_point_s){ .I_vitka=(value==0)?1000:-1000,
+                                                                .drift = (value==0)?o:x,
+                                                                .dWidth=dKatushka_width,
+                                                                .dHeight=dKatushka_height,
+                                                                .point=newPoint(.x=startPoint->x+(2*i+1)*dKatushka_width/2,
+                                                                                .y=startPoint->y-(2*j+1)*dKatushka_height/2)};
+            /*array_add(array, newModelPoint(.value=(value==0)?1000:-1000,
                                            .znak = (value==0)?o:x,
                                            .width=dKatushka_width,
                                            .height=dKatushka_height,
                                            .point=newPoint(.x=startPoint->x+(2*i+1)*dKatushka_width/2,
-                                                           .y=startPoint->y-(2*j+1)*dKatushka_height/2)));
+                                                           .y=startPoint->y-(2*j+1)*dKatushka_height/2)));*/
         }
     }
 }
 
 
 
-void points_katushki_in_faza(Array_s *array_points_faza, Point_s *startPoint, Inductor_model_data_params_s model_params)
+void points_katushki_in_faza(Model_katuska_point_s *array_points_faza, Inductor_model_data_s *inductor_model, Point_s *startPoint, Inductor_model_data_params_s model_params)
 {
     #define verific_katushki  {\
         if (dPoint.x >= model_params.width-2*model_params.prong_width-2*model_params.groove_width + model_params.katushka_zazor \
@@ -101,53 +108,55 @@ void points_katushki_in_faza(Array_s *array_points_faza, Point_s *startPoint, In
     int sh=0;
     do
     {
-        points_katushka(array_points_faza, &dPoint, katushka_width, model_params.katushka_height, model_params.dKatushka_width_count, model_params.dKatushka_height_count, 0);
+        points_katushka(array_points_faza, &dPoint, katushka_width, model_params.katushka_height, model_params.dKatushka_width_count, model_params.dKatushka_height_count, 0, &sh);
         
         dPoint.x += 2*model_params.prong_width+2*model_params.groove_width;
         dPoint.y = model_params.groove_height-model_params.katushka_zazor;
         
         verific_katushki
         
-        points_katushka(array_points_faza, &dPoint, katushka_width, model_params.katushka_height, model_params.dKatushka_width_count, model_params.dKatushka_height_count,1);
+        points_katushka(array_points_faza, &dPoint, katushka_width, model_params.katushka_height, model_params.dKatushka_width_count, model_params.dKatushka_height_count,1, &sh);
         
         dPoint.y = model_params.groove_height-2*model_params.katushka_zazor-model_params.katushka_height;
         
         verific_katushki
         
-        points_katushka(array_points_faza, &dPoint, katushka_width, model_params.katushka_height, model_params.dKatushka_width_count, model_params.dKatushka_height_count,1);
+        points_katushka(array_points_faza, &dPoint, katushka_width, model_params.katushka_height, model_params.dKatushka_width_count, model_params.dKatushka_height_count,1, &sh);
         
         dPoint.x += 2*model_params.prong_width+2*model_params.groove_width;
         
         verific_katushki
         
-        points_katushka(array_points_faza, &dPoint, katushka_width, model_params.katushka_height, model_params.dKatushka_width_count, model_params.dKatushka_height_count,0);
+        points_katushka(array_points_faza, &dPoint, katushka_width, model_params.katushka_height, model_params.dKatushka_width_count, model_params.dKatushka_height_count,0, &sh);
         
         dPoint.y = model_params.groove_height-model_params.katushka_zazor;
         
         verific_katushki
         
-        points_katushka(array_points_faza, &dPoint, katushka_width, model_params.katushka_height, model_params.dKatushka_width_count, model_params.dKatushka_height_count,0);
+        points_katushka(array_points_faza, &dPoint, katushka_width, model_params.katushka_height, model_params.dKatushka_width_count, model_params.dKatushka_height_count,0, &sh);
         
         dPoint.x += 2*model_params.prong_width+2*model_params.groove_width;
         dPoint.y = model_params.groove_height-2*model_params.katushka_zazor-model_params.katushka_height;
         
         verific_katushki
         
-        points_katushka(array_points_faza, &dPoint, katushka_width, model_params.katushka_height, model_params.dKatushka_width_count, model_params.dKatushka_height_count,1);
+        points_katushka(array_points_faza, &dPoint, katushka_width, model_params.katushka_height, model_params.dKatushka_width_count, model_params.dKatushka_height_count,1, &sh);
         
         dPoint.x+= 3*model_params.prong_width+3*model_params.groove_width;
         dPoint.y = model_params.groove_height-model_params.katushka_zazor;
-        sh++;
+       // sh++;
         
         verific_katushki
         
     } while (1);
 #undef verific_katushki
+    inductor_model->katushka_size = sh;
 }
 
 Inductor_model_data_s* newModelInductorData_base(Inductor_model_data_params_s model_params)
 {
-    Inductor_model_data_s *inductor_model = initInductorModelData();
+    validateModelInductorDataParams(&model_params);
+    Inductor_model_data_s *inductor_model = initInductorModelData(model_params);
     if (!validateModelInductorDataParams(&model_params))
         return inductor_model;
     double x0 = 0, y0 = 0;
@@ -158,16 +167,14 @@ Inductor_model_data_s* newModelInductorData_base(Inductor_model_data_params_s mo
     double dInductor_Width = model_params.width/model_params.dWidth_count;
     double dInductor_Height = model_params.height/model_params.dHeight_count;
     
-    if (DEBUG_OpenMP)
-        #pragma omp parallel for
-        inductor_model->model = malloc(sizeof(Model_point_s)*model_params.prong_dWidth_count);
-    for (int i=0; i<model_params.prong_dWidth_count; i++)
+    int _test_sh = 0;
+    
+    for (int i=0; i<model_params.prong_dWidth_count; i++, _test_sh++)
     {
-        inductor_model->model[i] = (Model_point_s){ .point = newPoint(.x=x0+(2*i+1)*dProng_Width/2, .y=y0),
-                                                    .normal_vector = newPoint(.x=0, .y=-1),
-                                                    .size = dProng_Width,
-                                                    .tan_vector = newPoint(.x=1, .y=0),
-                                                    .width = 0 };
+        inductor_model->inductor[i] = (Model_inductor_point_s){ .point = newPoint(.x=x0+(2*i+1)*dProng_Width/2, .y=y0),
+                                                                .normal_vector = newPoint(.x=0, .y=-1),
+                                                                .dSize = dProng_Width,
+                                                                .tan_vector = newPoint(.x=1, .y=0) };
         /*array_add(inductor_model->array_model_points,
                   newModelPoint(.point=newPoint(.x=x0+(2*i+1)*dProng_Width/2, .y=y0),
                                 .normal_vector=newPoint(.x=0, .y=-1),
@@ -175,7 +182,6 @@ Inductor_model_data_s* newModelInductorData_base(Inductor_model_data_params_s mo
                                 .tan_vector=newPoint(.x=1, .y=0),
                                 .width=0));*/
     }
-    Model_point_s *pp = &inductor_model->model[1];
     Point_s *dPoint = newPoint();
 
     for (int j=0; j<model_params.groove_count; j++)
@@ -183,84 +189,123 @@ Inductor_model_data_s* newModelInductorData_base(Inductor_model_data_params_s mo
         dPoint->x = x0+model_params.groove_width*(j)+model_params.prong_width*(j+1);
         dPoint->y = y0;
         
-        if (DEBUG_OpenMP)
-            #pragma omp parallel for
-        for (int i=0; i<model_params.groove_dHeight_count; i++)
-            array_add(inductor_model->array_model_points, newModelPoint(.point=newPoint(.x=dPoint->x, .y=dPoint->y+(2*i+1)*dGroove_Height/2),
+        for (int i=0; i<model_params.groove_dHeight_count; i++, _test_sh++)
+            inductor_model->inductor[_test_sh] = (Model_inductor_point_s){
+                .point = newPoint(.x=dPoint->x, .y=dPoint->y+(2*i+1)*dGroove_Height/2),
+                .normal_vector = newPoint(.x=1, .y=0),
+                .dSize = dGroove_Height,
+                .tan_vector = newPoint(.x=0, .y=1) };
+            /*array_add(inductor_model->array_model_points, newModelPoint(.point=newPoint(.x=dPoint->x, .y=dPoint->y+(2*i+1)*dGroove_Height/2),
                                                                         .normal_vector=newPoint(.x=1, .y=0),
                                                                         .size=dGroove_Height,
-                                                                        .tan_vector=newPoint(.x=0,.y=1))); // |*
+                                                                        .tan_vector=newPoint(.x=0,.y=1))); // |* */
         
         dPoint->y += model_params.groove_height;
-        
-        if (DEBUG_OpenMP)
-            #pragma omp parallel for
-        for (int i=0; i<model_params.groove_dWidth_count; i++)
-            array_add(inductor_model->array_model_points, newModelPoint(.point=newPoint(.x=dPoint->x+(2*i+1)*dGroove_Width/2, .y=dPoint->y),
+
+        for (int i=0; i<model_params.groove_dWidth_count; i++, _test_sh++)
+            inductor_model->inductor[_test_sh] = (Model_inductor_point_s){
+                .point = newPoint(.x=dPoint->x+(2*i+1)*dGroove_Width/2, .y=dPoint->y),
+                .normal_vector = newPoint(.x=0, .y=-1),
+                .dSize = dGroove_Width,
+                .tan_vector = newPoint(.x=1, .y=0) };
+            /*array_add(inductor_model->array_model_points, newModelPoint(.point=newPoint(.x=dPoint->x+(2*i+1)*dGroove_Width/2, .y=dPoint->y),
                                                                         .normal_vector=newPoint(.x=0, .y=-1),
                                                                         .size=dGroove_Width,
-                                                                        .tan_vector=newPoint(.x=1, .y=0))); //  -
+                                                                        .tan_vector=newPoint(.x=1, .y=0)));*/ //  -
         
         dPoint->x += model_params.groove_width;
         
-        if (DEBUG_OpenMP)
-            #pragma omp parallel for
-        for (int i=0; i<model_params.groove_dHeight_count; i++)
-            array_add(inductor_model->array_model_points, newModelPoint(.point=newPoint(.x=dPoint->x, .y=dPoint->y-(2*i+1)*dGroove_Height/2),
+
+        for (int i=0; i<model_params.groove_dHeight_count; i++, _test_sh++)
+            inductor_model->inductor[_test_sh] = (Model_inductor_point_s){
+                .point = newPoint(.x=dPoint->x, .y=dPoint->y-(2*i+1)*dGroove_Height/2),
+                .normal_vector = newPoint(.x=-1, .y=0),
+                .dSize = dGroove_Height,
+                .tan_vector = newPoint(.x=0, .y=-1) };
+            /*array_add(inductor_model->array_model_points, newModelPoint(.point=newPoint(.x=dPoint->x, .y=dPoint->y-(2*i+1)*dGroove_Height/2),
                                                                         .normal_vector=newPoint(.x=-1, .y=0),
                                                                         .size=dGroove_Height,
-                                                                        .tan_vector=newPoint(.x=0, .y=-1))); //  *|
+                                                                        .tan_vector=newPoint(.x=0, .y=-1)));*/ //  *|
         
         dPoint->y -= model_params.groove_height;
         
-        if (DEBUG_OpenMP)
-            #pragma omp parallel for
-        for (int i=0; i<model_params.prong_dWidth_count; i++)
-            array_add(inductor_model->array_model_points, newModelPoint(.point=newPoint(.x=dPoint->x+(2*i+1)*dProng_Width/2, .y=dPoint->y),
+        for (int i=0; i<model_params.prong_dWidth_count; i++, _test_sh++)
+        {
+            inductor_model->inductor[_test_sh] = (Model_inductor_point_s){
+                .point = newPoint(.x=dPoint->x+(2*i+1)*dProng_Width/2, .y=dPoint->y),
+                .normal_vector = newPoint(.x=0, .y=-1),
+                .dSize = dProng_Width,
+                .tan_vector = newPoint(.x=1, .y=0) };
+        }
+            /*array_add(inductor_model->array_model_points, newModelPoint(.point=newPoint(.x=dPoint->x+(2*i+1)*dProng_Width/2, .y=dPoint->y),
                                                                         .normal_vector=newPoint(.x=0, .y=-1),
                                                                         .size=dProng_Width,
-                                                                        .tan_vector=newPoint(.x=1, .y=0))); //  _
+                                                                        .tan_vector=newPoint(.x=1, .y=0)));*/ //  _
     }
     
     dPoint->x += model_params.prong_width;
-    if (DEBUG_OpenMP)
-        #pragma omp1 parallel for
-    for (int i=0; i<model_params.dHeight_count; i++)
-        array_add(inductor_model->array_model_points, newModelPoint(.point=newPoint(.x=dPoint->x, .y=dPoint->y+(2*i+1)*dInductor_Height/2),
+
+    int tt = model_params.groove_count*( 2*model_params.groove_dHeight_count+
+                                        model_params.groove_dWidth_count+
+                                        model_params.prong_dWidth_count)+
+    model_params.prong_dWidth_count;
+    
+    for (int i=0; i<model_params.dHeight_count; i++, _test_sh++)
+        inductor_model->inductor[_test_sh] = (Model_inductor_point_s){
+            .point = newPoint(.x=dPoint->x, .y=dPoint->y+(2*i+1)*dInductor_Height/2),
+            .normal_vector = newPoint(.x=1, .y=0),
+            .dSize = dInductor_Height,
+            .tan_vector = newPoint(.x=0, .y=1) };
+        /*array_add(inductor_model->array_model_points, newModelPoint(.point=newPoint(.x=dPoint->x, .y=dPoint->y+(2*i+1)*dInductor_Height/2),
                                                                     .normal_vector=newPoint(.x=1, .y=0),
                                                                     .size=dInductor_Height,
-                                                                    .tan_vector=newPoint(.x=0, .y=1)));
+                                                                    .tan_vector=newPoint(.x=0, .y=1)));*/
     
     dPoint->y += model_params.height;
-    #pragma omp parallel for
-    for (int i=0; i<model_params.dWidth_count; i++)
-        array_add(inductor_model->array_model_points, newModelPoint(.point=newPoint(dPoint->x-(2*i+1)*dInductor_Width/2, dPoint->y),
+
+    for (int i=0; i<model_params.dWidth_count; i++, _test_sh++)
+        inductor_model->inductor[_test_sh] = (Model_inductor_point_s){
+            .point = newPoint(dPoint->x-(2*i+1)*dInductor_Width/2, dPoint->y),
+            .normal_vector = newPoint(.x=0, .y=1),
+            .dSize = dInductor_Width,
+            .tan_vector = newPoint(.x=-1, .y=0) };
+        /*array_add(inductor_model->array_model_points, newModelPoint(.point=newPoint(dPoint->x-(2*i+1)*dInductor_Width/2, dPoint->y),
                                                                     .normal_vector=newPoint(.x=0, .y=1),
                                                                     .size=dInductor_Width,
-                                                                    .tan_vector=newPoint(.x=-1, .y=0)));
+                                                                    .tan_vector=newPoint(.x=-1, .y=0)));*/
     
     dPoint->x -= model_params.width;
-    #pragma omp parallel for
-    for (int i=0; i<model_params.dHeight_count; i++)
-        array_add(inductor_model->array_model_points, newModelPoint(.point=newPoint(.x=dPoint->x, .y=dPoint->y-(2*i+1)*dInductor_Height/2),
+    int tt1 = +model_params.groove_count*( 2*model_params.groove_dHeight_count+
+                                         model_params.groove_dWidth_count+
+                                         model_params.prong_dWidth_count)+
+    model_params.prong_dWidth_count+
+    model_params.dHeight_count+
+    model_params.dWidth_count;
+    for (int i=0; i<model_params.dHeight_count; i++, _test_sh++)
+        inductor_model->inductor[_test_sh] = (Model_inductor_point_s){
+            .point = newPoint(.x=dPoint->x, .y=dPoint->y-(2*i+1)*dInductor_Height/2),
+            .normal_vector = newPoint(.x=-1, .y=0),
+            .dSize = dInductor_Height,
+            .tan_vector = newPoint(.x=0, .y=-1) };
+        /*array_add(inductor_model->array_model_points, newModelPoint(.point=newPoint(.x=dPoint->x, .y=dPoint->y-(2*i+1)*dInductor_Height/2),
                                                                     .normal_vector=newPoint(.x=-1, .y=0),
                                                                     .size=dInductor_Height,
-                                                                    .tan_vector=newPoint(.x=0, .y=-1)));
+                                                                    .tan_vector=newPoint(.x=0, .y=-1)));*/
     
     freePoint(dPoint);
     // Faza A
     dPoint = newPoint(.x=x0+model_params.prong_width+model_params.katushka_zazor,
                       .y=y0+model_params.groove_height-model_params.katushka_zazor);
     
-    points_katushki_in_faza(inductor_model->array_points_faza_A, dPoint, model_params);
+    points_katushki_in_faza(inductor_model->katushka[Faza_A], inductor_model, dPoint, model_params);
     
     // Faza C
     dPoint->x += 3*model_params.prong_width+3*model_params.groove_width;
-    points_katushki_in_faza(inductor_model->array_points_faza_C, dPoint, model_params);
+    points_katushki_in_faza(inductor_model->katushka[Faza_C], inductor_model, dPoint, model_params);
     
     // Faza B
     dPoint->x += 3*model_params.prong_width+3*model_params.groove_width;
-    points_katushki_in_faza(inductor_model->array_points_faza_B, dPoint, model_params);
+    points_katushki_in_faza(inductor_model->katushka[Faza_B], inductor_model, dPoint, model_params);
     
     freePoint(dPoint);
     

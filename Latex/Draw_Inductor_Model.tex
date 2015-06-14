@@ -1,36 +1,30 @@
 \documentclass[10pt]{article}
-\usepackage[usenames]{color} %used for font color
 \usepackage{pgfplots}
-\usepackage{comment}
-\usepackage{pgffor}
 \usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
-\usepackage{pgfplotstable}
-\usepgfplotslibrary{dateplot}
-\usepackage[letterpaper, total={130mm,297mm}, landscape,left=2mm, right=2mm, top=2mm, bottom=2mm]{geometry}
+\usepackage[letterpaper,landscape,left=10mm, right=10mm, top=10mm, bottom=10mm]{geometry}
+\pgfplotsset{compat=1.9}
 
 \begin{document}
-%\pgfplotstabletypeset[columns={,,}]{/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/Faza_A.data}
-
-qwerqwerqwe
 
 \begin{tikzpicture}
+
 \begin{axis}[ title=Inductor Model, xlabel={$x, mm$}, ylabel={$y, mm$},
-height=80mm,
-width=260mm,  xticklabel style={/pgf/number format/1000 sep=},
+height=0.35\paperheight,
+width=0.9\paperwidth,
+xmax=210,
+xmin=-5,
 legend style={
     at={(0.5,-0.2)},
     anchor=north,
-    legend columns=-1,
-    overlay,
-    every axis plot post/.append style={mark=none},
-    enlargelimits=true}
+    legend columns=-1}
 ]
 
 \addplot[
-mark size=0.3pt,
-only marks,
-mark = square*
+black,
+mark size=0.08mm,
+%only marks,
+mark = *
 ] table {/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/inductor_model.data};
 
 \addplot[
@@ -69,12 +63,5 @@ o={mark = *, mark size=0.08mm}
 \legend{ Индуктор,, Фаза А,, Фаза В,, Фаза С}
 
 \end{axis}
-
-asdfsdf
-
 \end{tikzpicture}
-
-13123213
-
-
 \end{document}

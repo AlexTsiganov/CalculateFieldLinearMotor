@@ -9,9 +9,8 @@
 #ifndef __Diplom__Calculate_B0__
 #define __Diplom__Calculate_B0__
 
-#include <stdio.h>
 #include "Inductor_model_data.h"
 
-Array_s* calulate_B0(Inductor_model_data_s *inductorModel);
+
 
 #endif

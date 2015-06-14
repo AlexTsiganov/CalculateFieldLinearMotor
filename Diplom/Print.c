@@ -9,31 +9,28 @@
 #include "Print.h"
 #include "Model_point.h"
 
-void print_Array_s(Array_s *array)
+void print_Model_Inductor(Inductor_model_data_s *inductor_model)
 {
-    for (int i=0; i<array->length; i++)
+    for (int i=0; i<inductor_model->inductor_size; i++)
     {
-        Model_point_s *point = (Model_point_s*)array->items[i];
-        printf("Point: (%.3f; %.3f) -> %.3f (w:%.3f; h:%.3f)", point->point->x, point->point->y, point->size, point->width, point->height);
-        if (point->value)
-            printf(", value: %.6f", point->value);
-        if (point->normal_vector)
-            printf(", normal_vector: (%.3f; %.3f)", point->normal_vector->x, point->normal_vector->y);
-        if (point->tan_vector)
-            printf(", tan_vector: (%.3f; %.3f)", point->tan_vector->x, point->tan_vector->y);
+        Model_inductor_point_s inductor_point = inductor_model->inductor[i];
+        printf("Point: (%.3f; %.3f) -> %.3f", inductor_point.point->x, inductor_point.point->y, inductor_point.dSize);
+        if (inductor_point.normal_vector)
+            printf(", normal_vector: (%.3f; %.3f)", inductor_point.normal_vector->x, inductor_point.normal_vector->y);
+        if (inductor_point.tan_vector)
+            printf(", tan_vector: (%.3f; %.3f)", inductor_point.tan_vector->x, inductor_point.tan_vector->y);
         printf("\n");
     }
 }
 
-void print_Array_s_Matrix_Jitems(Array_s *array)
+void print_Array_s_Matrix_Jitems(double *A_matrix, int size)
 {
     printf("Print Matrix J items: \n");
-    for (int i=0; i<array->length/2; i++)
+    for (int i=0; i<size/2; i++)
     {
-        for (int k=0; k<array->length/2; k++)
+        for (int k=0; k<size/2; k++)
         {
-            double *d = ((double*)array_get_by_index(array, i));
-            printf("  %.3f  ", *d);
+            printf("  %.3f  ", A_matrix[k+i*size/2]);
         }
         printf("\n");
     }

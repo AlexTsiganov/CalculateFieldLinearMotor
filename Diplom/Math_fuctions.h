@@ -14,4 +14,6 @@
 double calculate_line_size(Point_s *start_point, Point_s *end_point);
 double arctan3(double y, double x);
 
+double int_Bt(double x1, double x2, double x3, double x4, double x5, double x6);
+
 #endif

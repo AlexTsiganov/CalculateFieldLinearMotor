@@ -9,59 +9,60 @@
 #include "WriteFile.h"
 #include "Config.h"
 
-void write_Inductor_model_to_file(Inductor_model_data_s *inductorModel, char *filePath)
+void write_Inductor_to_file(Inductor_model_data_s *inductorModel, char *filePath)
 {
     FILE *f = fopen(filePath, "w");
     if (!f)
     return;
     fprintf(f, "point_x \tpoint_y\n");
-    for (int i=0; i<inductorModel->array_model_points->length; i++)
+    for (int i=0; i<inductorModel->inductor_size; i++)
     {
-        Point_s *point = ((Model_point_s*)inductorModel->array_model_points->items[i])->point;
+        Point_s *point = inductorModel->inductor[i].point;
         fprintf(f, "%f\t%f\n", point->x, point->y);
     }
     fclose(f);
 }
 
-void write_Inductor_model_faza_to_data_file(Array_s *array_points, char *filePath)
+void write_Katushka_to_data_file(Model_katuska_point_s *points, int lenght, char *filePath)
 {
     FILE *f = fopen(filePath, "w");
     if (!f)
     return;
     fprintf(f, "x\ty\tclass\n");
-    for (int i=0; i<array_points->length; i++)
+    for (int i=0; i<lenght; i++)
     {
-        Point_s *point = ((Model_point_s*)array_points->items[i])->point;
-        enum{x,o} znak = ((Model_point_s*)array_points->items[i])->znak;
+        Point_s *point = points[i].point;
+        Drift_e znak = points[i].drift;
         fprintf(f, "%f\t%f\t%s\n", point->x, point->y, znak==x?"x":"o");
     }
     fclose(f);
 }
 
-void write_calculate_B0_to_file(Array_s *array, char *filePath)
+void write_calculate_J0_to_file(Calculate_J_result *j_result, char *filePath)
 {
     FILE *f = fopen(filePath, "w");
     if (!f)
     return;
     fprintf(f, "n\tx\ty\tz\n");
-    for (int i=0; i<array->length; i++)
+    for (int i=0; i<j_result->inductorModel->inductor_size; i++)
     {
-        Model_point_s *model_point = (Model_point_s*)array->items[i];
-        fprintf(f, "%d\t%f\t%f\t%f\n",i , model_point->point->x, model_point->point->y, model_point->value);
+        Model_inductor_point_s model_point = j_result->inductorModel->inductor[i];
+        double j = j_result->J0_inductor[i];
+        fprintf(f, "%d\t%f\t%f\t%f\n",i , model_point.point->x, model_point.point->y, j);
     }
     fclose(f);
 }
 
-void write_Inductor_model_for_Grapher(Inductor_model_data_s *inductor)
+void write_Inductor_model_for_Grapher(Inductor_model_data_s *inductor_model)
 {
 #warning TODO:
     FILE *f = fopen("/Users/alextsiganov/Documents/University/Projects/CalculateFieldLinearMotor/Data files/model_inductor.txt", "w");
     if (!f)
         return;
-    for (int i=0; i<inductor->array_model_points->length; i++)
+    for (int i=0; i<inductor_model->inductor_size; i++)
     {
-        double x = ((Model_point_s*)inductor->array_model_points->items[i])->point->x;
-        double y = ((Model_point_s*)inductor->array_model_points->items[i])->point->y;
+        double x = inductor_model->inductor[i].point->x;
+        double y = inductor_model->inductor[i].point->y;
         fprintf(f, "%f\t%f\n", x, y);
     }
     fclose(f);
@@ -72,28 +73,26 @@ void write_Inductor_model_for_Grapher(Inductor_model_data_s *inductor)
 
 void write_Inductor_model_to_data_files(Inductor_model_data_s *inductorModel)
 {
-    write_Inductor_model_to_file(inductorModel, PATH_INDUCTOR_MODEL_DATA);
-    write_Inductor_model_faza_to_data_file(inductorModel->array_points_faza_A, PATH_INDUCTOR_MODEL_FAZA_A_DATA);
-    write_Inductor_model_faza_to_data_file(inductorModel->array_points_faza_B, PATH_INDUCTOR_MODEL_FAZA_B_DATA);
-    write_Inductor_model_faza_to_data_file(inductorModel->array_points_faza_C, PATH_INDUCTOR_MODEL_FAZA_C_DATA);
+    write_Inductor_to_file(inductorModel, PATH_INDUCTOR_MODEL_DATA);
+    write_Katushka_to_data_file(inductorModel->katushka[Faza_A], inductorModel->katushka_size, PATH_INDUCTOR_MODEL_FAZA_A_DATA);
+    write_Katushka_to_data_file(inductorModel->katushka[Faza_B], inductorModel->katushka_size, PATH_INDUCTOR_MODEL_FAZA_B_DATA);
+    write_Katushka_to_data_file(inductorModel->katushka[Faza_C], inductorModel->katushka_size, PATH_INDUCTOR_MODEL_FAZA_C_DATA);
 }
 
-void write_calculate_Matrix_AJ_to_file(Array_s *array, char *filePath)
+void write_calculate_Matrix_AJ_to_file(double *A_matrix, int size, char *filePath)
 {
     FILE *f = fopen(filePath, "w");
     if (!f)
         return;
-    int length = sqrt(array->length);
+    int length = sqrt(size);
     for (int i=0; i<length; i++)
     {
-        double *d1 = ((double*)array_get_by_index(array, i*length));
-        fprintf(f, "%.3f", *d1);
+        fprintf(f, "%.6f", A_matrix[i*length]);
         for (int k=1; k<length; k++)
         {
-            double *d = ((double*)array_get_by_index(array, i*length+k));
-            fprintf(f, "%-10.3f", *d);
+            fprintf(f, "%-10.6f", A_matrix[i*length+k]);
         }
-        fprintf(f, "******\n");
+        fprintf(f, "\n\n\n");
     }
     fclose(f);
 }
